@@ -225,6 +225,61 @@ const applySetLine = (rawLine, next) => {
   }
 };
 
+// Mechanics: mirror of mechanics.txt -> *label check_stress_threshold
+const applyCheckStressThreshold = (next) => {
+  const physical = Number(next.physical ?? 0);
+  const stress = Number(next.stress ?? 0);
+
+  // *if (physical <= 0) -> total_body_failure
+  if (physical <= 0) {
+    [
+      '*set physical 25',
+      '*set stress 50',
+      '*set dance %-20',
+      '*set vocals %-20',
+      '*set charisma %-20',
+      '*set visual %-10',
+      '*set self_belief %-20',
+      '*set rel_manager %-25',
+      '*set collapse_count +1',
+    ].forEach((line) => applySetLine(line, next));
+    return;
+  }
+
+  // *elseif (stress >= 85) -> severe_breakdown
+  if (stress >= 85) {
+    [
+      '*set physical %+15',
+      '*set stress %-20',
+      '*set dance %-12',
+      '*set vocals %-12',
+      '*set charisma %-12',
+      '*set self_belief %-10',
+      '*set rel_manager %-15',
+    ].forEach((line) => applySetLine(line, next));
+    return;
+  }
+
+  // *elseif (stress >= 65) -> mild_burnout
+  if (stress >= 65) {
+    [
+      '*set dance %-5',
+      '*set vocals %-5',
+      '*set self_belief %-5',
+    ].forEach((line) => applySetLine(line, next));
+    return;
+  }
+
+  // *elseif (physical <= 15) -> physical_injury
+  if (physical <= 15) {
+    [
+      '*set dance %-15',
+      '*set physical %+10',
+      '*set stress %+10',
+    ].forEach((line) => applySetLine(line, next));
+  }
+};
+
 const runEffects = (effects = [], state) => {
   const lines = effects.filter((l) => typeof l === 'string');
   const next = { ...state };
@@ -240,6 +295,17 @@ const runEffects = (effects = [], state) => {
     const trimmed = raw.trim();
     if (!trimmed) continue;
     const lower = trimmed.toLowerCase();
+
+    // Handle *gosub_scene mechanics check_stress_threshold
+    if (lower.startsWith('*gosub_scene ')) {
+      const parts = trimmed.split(/\s+/);
+      const sceneName = parts[1];
+      const labelName = parts[2];
+      if (sceneName === 'mechanics' && labelName === 'check_stress_threshold') {
+        applyCheckStressThreshold(next);
+      }
+      continue;
+    }
 
     // Handle simple *if ... [*set ...] [*else ...]
     if (lower.startsWith('*if ')) {
