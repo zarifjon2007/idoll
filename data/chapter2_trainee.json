@@ -1,0 +1,1957 @@
+{
+  "chapter2_trainee": {
+    "id": "chapter2_trainee",
+    "text": "*set chapter 2"
+  },
+  "medical_check": {
+    "id": "medical_check",
+    "text": "The medical room is cold and smells of antiseptic.\nThe agency nurse is moving efficiently, checking a long line of trainees.\n\"Stand straight,\" the nurse commands, adjusting the digital sensor. \"Weight on both feet.\"\nYou look at the digital readout.\nYou are...",
+    "choices": [
+      {
+        "text": "Really short. I'm tiny compared to the other trainees.",
+        "nextScene": "medical_next",
+        "effects": [
+          "*set p_height \"Really Short\"",
+          "*set visual %+3"
+        ]
+      },
+      {
+        "text": "On the shorter side.",
+        "nextScene": "medical_next",
+        "effects": [
+          "*set p_height \"Short\"",
+          "*set visual %+1"
+        ],
+        "resultText": "A bit smaller than average."
+      },
+      {
+        "text": "Exactly average.",
+        "nextScene": "medical_next",
+        "effects": [
+          "*set p_height \"Average\""
+        ],
+        "resultText": "I fit the standard idol profile."
+      },
+      {
+        "text": "Tall.",
+        "nextScene": "medical_next",
+        "effects": [
+          "*set p_height \"Tall\"",
+          "*set charisma %+1"
+        ],
+        "resultText": "I stand out in a crowd."
+      },
+      {
+        "text": "Really tall.",
+        "nextScene": "medical_next",
+        "effects": [
+          "*set p_height \"Really Tall\"",
+          "*set charisma %+3"
+        ],
+        "resultText": "I tower over almost everyone in the company."
+      }
+    ]
+  },
+  "medical_next": {
+    "id": "medical_next",
+    "text": "She scribbles numbers onto your file with robotic precision.\nTo Titan Entertainment, your body is just data. A set of measurements to be optimized.\n\nThe nurse stamps your file: MALE / 4TH FLOOR.\n    Here is your keycard, she says, handing you a plastic ID.\n    You are rooming with a trainee named Jun.\n\nThe nurse stamps your file: FEMALE / 5TH FLOOR.\n    Here is your keycard, she says, handing you a plastic ID.\n    You are rooming with a trainee named Jun.\nThe nurse pauses at the housing section of your file.\nHer finger hovers over the keyboard.\nSystem error, she mutters. The dorm software is old.\nIt only accepts binary input for the keycard access levels.\nShe looks at you, not unkindly, but with the exhaustion of an overworked employee.\nI can't print the ID without selecting a ward, she says.\nWe have the 4th Floor (Boys) or the 5th Floor (Girls).\nI just need to know which keycard to code so the elevator works for you.",
+    "conditionals": [
+      {
+        "branches": []
+      },
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "gender = \"female\"",
+            "type": "if",
+            "content": "*set biology \"female\"\n*set dorm_ward \"girls\"\n*set lower_anatomy \"vagina\"\n*set has_chest true\n*set j_he \"she\"\n*set j_him \"her\"\n*set j_his \"her\"\n*set j_boy \"girl\"",
+            "goto": "coco_logic"
+          },
+          {
+            "condition": "gender = \"male\"",
+            "type": "if",
+            "content": "*set biology \"male\"\n*set dorm_ward \"boys\"\n*set lower_anatomy \"penis\"\n*set has_chest false\n*set j_he \"he\"\n*set j_him \"him\"\n*set j_his \"his\"\n*set j_boy \"boy\"",
+            "goto": "coco_logic"
+          }
+        ]
+      }
+    ],
+    "choices": [
+      {
+        "text": "Code the keycard for the 4th Floor. (Boys Wing)",
+        "nextScene": null,
+        "effects": [
+          "*set biology \"male\"",
+          "*set dorm_ward \"boys\"",
+          "*set lower_anatomy \"penis\"",
+          "*set has_chest false",
+          "*set j_he \"he\"",
+          "*set j_him \"him\"",
+          "*set j_his \"his\"",
+          "*set j_boy \"boy\""
+        ],
+        "resultText": "She types a command and the machine whirrs.\n        Done, she says. 4th Floor.\n        You're rooming with a trainee named Jun."
+      },
+      {
+        "text": "Code the keycard for the 5th Floor. (Girls Wing)",
+        "nextScene": "coco_logic",
+        "effects": [
+          "*set biology \"female\"",
+          "*set dorm_ward \"girls\"",
+          "*set lower_anatomy \"vagina\"",
+          "*set has_chest true",
+          "*set j_he \"she\"",
+          "*set j_him \"her\"",
+          "*set j_his \"her\"",
+          "*set j_boy \"girl\""
+        ],
+        "resultText": "She types a command and the machine whirrs.\n        Done, she says. 5th Floor.\n        You're rooming with a trainee named Jun.\nYou take the plastic ID card. It feels heavy in your hand.\nIt's just a room number, you tell yourself. It doesn't define who you are. It's just a place to sleep."
+      }
+    ]
+  },
+  "coco_logic": {
+    "id": "coco_logic",
+    "text": "",
+    "conditionals": [
+      {
+        "branches": []
+      },
+      {
+        "branches": []
+      },
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "gender = \"nb\"",
+            "type": "if",
+            "content": "*set rival_name \"Coco\"\n*set r_he \"they\"\n*set r_him \"them\"\n*set r_his \"their\"\n\nYou head toward the elevator to meet your new roommate.",
+            "goto": "meet_jun"
+          },
+          {
+            "condition": "gender = \"female\"",
+            "type": "if",
+            "content": "*set rival_name \"Coco\"\n*set r_he \"she\"\n*set r_him \"her\"\n*set r_his \"her\"",
+            "goto": null
+          },
+          {
+            "condition": "gender = \"male\"",
+            "type": "if",
+            "content": "*set rival_name \"Coco\"\n*set r_he \"he\"\n*set r_him \"him\"\n*set r_his \"his\"",
+            "goto": null
+          }
+        ]
+      }
+    ]
+  },
+  "meet_jun": {
+    "id": "meet_jun",
+    "text": "The elevator opens on the ${dorm_ward} floor. The hallway is pristine polished white floors and endless doors marked with numbers.\nIt smells of industrial cleaner and expensive perfume.\nYou find Room 404. You tap your ID card against the reader, and the heavy door clicks open.\nThe room is small but efficient. It looks like an IKEA showroom designed by a drill sergeant.\nThere are two sturdy, modern bunk beds with white sheets tucked in with military precision.\nA small desk is pushed against the wall, but there are no posters, no clutter, no personality.\nBut as you step inside, the sterile illusion is broken.\nThe room smells powerfully of spicy beef broth and MSG.\nA ${j_boy} is sitting on the floor behind the bottom bunk, hunched over something like a goblin.\n${j_he} freezes when you enter, cheeks bulging like a chipmunk, a pair of wooden chopsticks hanging from ${j_his} mouth.\nMmph!\n${j_he} squeaks, frantically trying to swallow the noodles. ${j_he} scrambles to hide a steaming cup of instant ramen behind ${j_his} back.\nI... I thought you were the manager! ${j_he} gasps, wiping broth from ${j_his} chin. Please don't report me.\nI was starving.\nJun looks soft, too soft for this rigid place.\n${j_he} is wearing an oversized hoodie and looks at you with wide, terrified eyes.",
+    "choices": [
+      {
+        "text": "\"I understand the need for junk, but doing this on Day 1? It's basically a death wish.\"",
+        "nextScene": null,
+        "effects": [
+          "*set charisma %+5",
+          "*set rel_jun %+10"
+        ],
+        "resultText": "Jun laughs nervously, nearly choking on a noodle.\n        I know! I'm living on the edge. I'm Jun, by the way."
+      },
+      {
+        "text": "I sniff the air loudly. \"Spicy flavor? Bold choice.\"",
+        "nextScene": null,
+        "effects": [
+          "*set the_mask %+5",
+          "*set rel_jun %+5"
+        ],
+        "resultText": "Jun blinks, then giggles nervously.\n        It's the only flavor that matters."
+      },
+      {
+        "text": "\"You're lucky I'm not a snitch. That smell is going to get us killed.\"",
+        "nextScene": null,
+        "effects": [
+          "*set per_bold +5",
+          "*set rel_jun %+5"
+        ],
+        "resultText": "Jun winces.\n        I know. I have the window open! I'm trying to fan it out!\n        Jun looks at the cup in ${j_his} hand, then back at you.\n        Um, Jun whispers, Do... do you want some?\n        I have a second pair of chopsticks. It's still hot."
+      },
+      {
+        "text": "\"No thanks. You look like you need it more.\"",
+        "nextScene": null,
+        "effects": [
+          "*set per_gentle +5",
+          "*set rel_jun %+10"
+        ],
+        "resultText": "Are you sure?\n                Jun asks. ${j_he} takes another slurping bite, looking guilty but happy."
+      },
+      {
+        "text": "\"Hell yes.\" I sit on the floor. Forbidden noodles taste the best.",
+        "nextScene": null,
+        "effects": [
+          "*set rel_jun %+15",
+          "*set physical %-5"
+        ],
+        "resultText": "You sit cross-legged on the pristine tile.\n                You take turns slurping the spicy, salty noodles. Compared to the cafeteria salad, it tastes like heaven.\n                Jun smiles, watching you eat. It's a flash of human warmth in the cold room."
+      },
+      {
+        "text": "\"I don't eat sodium bombs. It bloats your face for weigh-ins.\"",
+        "nextScene": "month_3_start",
+        "effects": [
+          "*set ruthless +5",
+          "*set rel_jun %-5"
+        ],
+        "resultText": "Jun flinches and quickly puts the lid back on the cup.\n                Right. Sorry. I should... I should throw this out.\nI'm glad you're my roommate, Jun says quietly, wiping the cup clean.\nThis place feels so lonely. And hungry."
+      }
+    ]
+  },
+  "month_3_start": {
+    "id": "month_3_start",
+    "text": "*set stress +10\n[i](System: Another month passes. The competition grows thinner. Stress +10)[/i]\nAge 15. Month 3. The First Evaluation.\nIt is the morning of the Culling.\nYou wake up in the Trainee Dorms. It isn't a bedroom; it is a storage unit for human capital.\nThe room is windowless and painfully white.\nFour bunk beds are stacked with mathematical precision into a space meant for two.\nEvery surface is cluttered, not with personal items, but with company-mandated efficiency: assigned diet supplements, schedule tablets, and identical grey practice uniforms drying on the rails.\nThere is no privacy here. Just the sound of twelve other teenagers breathing in their sleep and the low, electric hum of the air purifier.\nYou step out into the hallway. The Titan Entertainment building is a labyrinth of concrete and glass.\nThe corridors are endless, white, and sterile, lit by harsh fluorescent lights that buzz softly.\nIt doesn't feel like a school. It feels like a high-tech factory.\nThrough the glass walls of the practice rooms, you see silhouettes of other trainees already working.\nThey are just blurs of movement, repeating the same dance steps over and over in front of floor-to-ceiling mirrors.\nYou look over at Jun. ${j_he} is sitting on the edge of ${j_his} bed, staring at the floor.\n${j_he} looks pale under the artificial lights, looking smaller than usual in the clinical room.\n\"I don't know if I can do this,\" ${j_he} whispers, ${j_his} hands trembling.\n\"Hey,\" you say, walking over to ${j_him}.\nThe floor is freezing cold under your bare feet.\nYou put a hand on ${j_his} shoulder.\n\nHe pauses at the door, his hand resting on the handle.\n            He touches his own lips absentmindedly, then looks back at you with a dark, unreadable expression.\n            \"You're dangerous, Rookie,\" he murmurs, half to himself.\n            \"Be careful with eyes like that. You might burn someone.\"",
+    "conditionals": [
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "romance_minjae = false",
+            "type": "if",
+            "content": "*set rel_minjae %+5\n\nHe pauses at the door, regaining his composure.\n            \"You're not useless, Rookie. Keep practicing.\"\n            \"See you around, ${name}.\"",
+            "goto": "eval_room_entry"
+          }
+        ]
+      }
+    ],
+    "choices": [
+      {
+        "text": "\"Don't worry, Junie. I've got you.\"",
+        "nextScene": null,
+        "effects": [
+          "*set jun_nickname \"Junie\"",
+          "*set rel_jun %+5",
+          "*set per_gentle +5"
+        ],
+        "resultText": "Jun takes a deep breath, giving you a small smile.\n        \"Thanks. You always treat me like a kid, but I like it.\""
+      },
+      {
+        "text": "\"Look at me, Jun-ah. You're ready.\"",
+        "nextScene": null,
+        "effects": [
+          "*set jun_nickname \"Jun-ah\"",
+          "*set rel_jun %+5",
+          "*set charisma %+5"
+        ],
+        "resultText": "Jun nods, the familiar honorific grounding ${j_him}.\n        \"Right. Jun-ah is ready. We can do this.\""
+      },
+      {
+        "text": "\"Aww, is Uri Jun (Our Jun) scared?\"",
+        "nextScene": null,
+        "effects": [
+          "*set jun_nickname \"Uri Jun\"",
+          "*set per_bold +5"
+        ],
+        "resultText": "Jun blushes and shoves your arm playfully.\n        \"Stop calling me that! I'm not a baby.\" But ${j_he} stops shaking."
+      },
+      {
+        "text": "\"Stop crying, Crybaby. Tears ruin the makeup.\"",
+        "nextScene": null,
+        "effects": [
+          "*set jun_nickname \"Crybaby\"",
+          "*set per_bold +5",
+          "*set ruthless +5"
+        ],
+        "resultText": "Jun laughs nervously, wiping ${j_his} eyes.\n        \"You're brutal. But you're right.\"\nIn the main hall, the atmosphere is suffocating.\nDozens of trainees are stretching on the cold wooden floor, checking their reflections in the mirrors one last time.\nYou have one hour before you are called. How do you spend it?"
+      },
+      {
+        "text": "I practice \"smizing\" in the mirror. First impressions are everything.",
+        "nextScene": "eval_room_entry",
+        "effects": [
+          "*set visual %+7",
+          "*set stress %+5",
+          "*set physical %-5"
+        ],
+        "resultText": "You stare at yourself until your eyes water.\n        You force a smile until your cheeks cramp.\n        You look like a doll. Perfect."
+      },
+      {
+        "text": "I lock myself in a closet and work on my dance routine.",
+        "nextScene": "eval_room_entry",
+        "effects": [
+          "*set dance %+11",
+          "*set physical %-10",
+          "*set stress %+15"
+        ],
+        "resultText": "You run the choreography at 2x speed in the stifling heat of the closet.\n        Your muscles burn, panic rising in your chest with every mistake."
+      },
+      {
+        "text": "I do vocal riffs in the stairwell.",
+        "nextScene": "eval_room_entry",
+        "effects": [
+          "*set vocals %+7",
+          "*set stress %+15",
+          "*set physical %-5"
+        ],
+        "resultText": "You push your range higher and higher, terrified of cracking.\n        You need to hit that high note today."
+      },
+      {
+        "text": "I hang out with Jun and Hana. We need to calm each other down.",
+        "nextScene": "eval_room_entry",
+        "effects": [
+          "*set rel_jun %+5",
+          "*set per_gentle +5",
+          "*set stress %-10",
+          "*set physical %+5"
+        ],
+        "resultText": "You find Hana sitting on the floor, shaking.\n        \"I can't do it,\" Hana whispers.\n        \"You're going to be fine\" you and Jun say together."
+      },
+      {
+        "text": "I go to the rooftop to escape the noise.",
+        "nextScene": null,
+        "effects": [
+          "*set stress %-10",
+          "*set rel_minjae %+5"
+        ],
+        "resultText": "The door to the roof is heavy. You push it open, expecting silence.\n        Instead, you hear shouting.\n        \"I will protect you! Even if the whole world turns against us!\"\n        It is Han Min-jae.\n        He is standing near the railing, reading from a script.\n        He says the line with perfect diction, perfect projection... and zero soul.\n        He groans, throwing his head back.\n        \"Garbage. Absolute garbage. I've said this line in three different dramas this year.\"\n        He kicks the ventilation shaft.\n        \"Why do they always cast me as the 'Prince'? I want to play a villain. A psycho. A horse with alcoholism.\"\n        He turns around and sees you.\n        For a second, the 'National Heartthrob' mask slips. He looks annoyed to be caught venting.\n        \"You again?\" he snaps, quickly rolling up the script. \"Don't you have a mirror to stare at?\""
+      },
+      {
+        "text": "\"I prefer watching you have an artistic crisis. It's more entertaining.\"",
+        "nextScene": null,
+        "effects": [
+          "*set charisma %+5",
+          "*set rel_minjae %+5"
+        ],
+        "resultText": "Minjae snorts, a small smirk breaking through his annoyance.\n                \"Glad I can entertain the rookies. Tickets are usually expensive.\"\n                He taps the script against his leg.\n                \"My agent says this role is a 'guaranteed hit'. Another romance. Another fake smile.\"\n                He looks at you, eyes narrowing thoughtfully.\n                \"You... you're raw. You haven't learned to fake it yet. Read the female lead lines. I need to feel something other than boredom.\""
+      },
+      {
+        "text": "\"You sounded professional, Sunbae. But maybe too... perfect?\"",
+        "nextScene": null,
+        "effects": [
+          "*set per_gentle +5",
+          "*set rel_minjae %+5"
+        ],
+        "resultText": "Minjae pauses, surprised by your honesty.\n                \"Too perfect,\" he repeats, bitter but intrigued. \"That's exactly the problem. I'm a machine.\"\n                He runs a hand through his hair, looking tired.\n                \"I need to break the image. I need to be messy.\"\n                He holds out the script. \"Help me. Don't act like an idol. Act like a person who actually has feelings. Can you do that?\""
+      },
+      {
+        "text": "\"Sorry to interrupt, Sunbae-nim. I'll leave.\"",
+        "nextScene": null,
+        "effects": [
+          "*set the_mask %+5"
+        ],
+        "resultText": "\"Stop,\" Minjae commands, his voice dropping into his 'actor tone'.\n                \"Leaving is boring. Stay.\"\n                He sighs. \"Since you're already here, make yourself useful. Read the other part. I need a warm body to rehearse with.\"\n        You take the script. It's a scene about a forbidden confession. Standard K-Drama stuff.\n        You read the line: [i]\"But Oppa, you belong to the stars, and I'm just...\"[/i](lol xp)\n        Minjae steps closer. The shift is terrifyingly instant.\n        One second he is the jaded Minjae, the next he is the desperate lover.\n        He reaches out, capturing a lock of your hair.\n        His eyes, those famous striking green eyes that are on billboards all over Seoul, lock onto yours.\n        \"Screw the stars,\" he whispers. The intensity in his voice makes your heart hammer.\n        \"I'm tired of shining for everyone else. I just want...\"\n        He leans in. He isn't acting anymore. Or is he?\n        With Minjae, the line is always blurred.\n        He stares at your lips, and for a silent moment, the rooftop feels like a movie set."
+      },
+      {
+        "text": "I don't pull away. Instead, I lean in slightly, daring him to finish the scene.",
+        "nextScene": null,
+        "effects": [
+          "*set romance_minjae true",
+          "*set charisma %+5",
+          "*set rel_minjae %+5"
+        ],
+        "resultText": "Minjae freezes. He realizes you aren't pulling back.\n                He inhales sharply, his gaze dropping to your lips one last time, lingering there dangerously.\n                For a second, you think he might actually close the distance."
+      },
+      {
+        "text": "I step back sharply. \"Acting. Remember?\"",
+        "nextScene": null,
+        "effects": [
+          "*set the_mask %+10",
+          "*set rel_minjae %+3"
+        ],
+        "resultText": "You break the spell.\n                Minjae blinks, snapping out of his trance immediately.\n                \"Right. Acting,\" he mutters, though he looks a bit flushed.\n                \"Good focus. Most rookies would have melted.\""
+      },
+      {
+        "text": "I laugh nervously. \"Wow. You really are a pro, Sunbae.\"",
+        "nextScene": null,
+        "effects": [
+          "*set per_bold %+5",
+          "*set rel_minjae %+2"
+        ],
+        "resultText": "Minjae pulls back, rolling his eyes but looking pleased to have his ego stroked.\n                \"Obviously. Did you think I was serious? Please.\"\n        He clears his throat, turning back to the city lights to hide his face.\n        \"Okay. Cut. That... that was better.\"\n        He walks past you toward the door."
+      }
+    ]
+  },
+  "eval_room_entry": {
+    "id": "eval_room_entry",
+    "text": "The manager calls your group.\nYou walk into the waiting area outside the evaluation room.\nThe door opens and ${rival_name} walks out.\nYou recognize ${r_him} instantly. It is the trainee you met at the auditions, the one with the expensive clothes and the perfect posture.\nBack then, ${r_he} was just another hopeful. Now, three months later, ${r_he} is the Ace.\n${r_He} wipes sweat from ${r_his} forehead and smirks when ${r_he} sees you.\n\"Still here?\"\n${r_he} asks, popping a piece of gum. \"I thought you would have quit by now.\"\n${r_He} walks past you without waiting for an answer, confident that ${r_he} has already secured the top spot.\n\nYour heart does a pitter-patter in your chest, beating against your ribs like a trapped bird.\n    You wipe your sweaty palms on your pants. \"Just breathe,\" you tell yourself. \"Just breathe.\"",
+    "conditionals": [
+      {
+        "branches": []
+      },
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "per_bold >= 50",
+            "type": "if",
+            "content": "You stare at the closed door. You are ready for Judgment Day.\n    You feel like a mannequin in a shop window, and the executives inside are just calculators, figuring out how much profit they can squeeze out of your youth per quarter.\n    It is what it is, right?",
+            "goto": "post_personality_check"
+          },
+          {
+            "condition": "per_gentle >= 50",
+            "type": "if",
+            "content": "",
+            "goto": "post_personality_check"
+          }
+        ]
+      }
+    ]
+  },
+  "post_personality_check": {
+    "id": "post_personality_check",
+    "text": "\"Next!\" the director barks."
+  },
+  "eval_1": {
+    "id": "eval_1",
+    "text": "You step onto the \"X\" tape mark.\nFive judges. One camera.\nThe music starts. It's your moment.\nHow do you perform?\n\nYou don't just dance; you pose. Every movement is a photoshoot. The judges stop writing and just watch you. You are magnetic.\n            *set visual %+10\n\nYou try to look charming, but you just look stiff.\n            \"Stop posing and dance,\" a judge mutters.\n\nYour voice cracks on the high note.\n            It's painful to hear.",
+    "conditionals": [
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "vocals >= 25",
+            "type": "if",
+            "content": "*set visual %-5\n*set vocals %+10\n\nYou close your eyes.\n            You scrunch up your face. You look ugly, but the sound coming out of you is raw and powerful.\n            The head vocal trainer nods. Finally. Some emotion.",
+            "goto": "eval_1_result"
+          }
+        ]
+      },
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "dance >= 34) or (vocals >= 35",
+            "type": "if",
+            "content": "*set charisma %+15\n\nYou dance like you're bored, but you hit every beat perfectly.\n            It's the Genius vibe.\n            The judges look confused, but impressed. \"So much talent,\" they whisper.",
+            "goto": "eval_1_result"
+          },
+          {
+            "condition": null,
+            "type": "else",
+            "content": "*set scandal_risk %+ (10 * scandal_mult)\n*set stress %+10\n*set ruthless +10\n*set rel_jun %-10\n*set rel_manager %+7\n\nYou mark the moves lazily.\n            The music stops.\n            \"Get out,\" the Director says. \"If you don't want to be here, leave.\"\n        During the group formation, you step slightly in front of your partner, blocking their light.\n        You sing louder over their lines.\n        They stumble, flustered. You shine.\n        The judges see it. They know what you did.\n        And they like the hunger.\n        Jun looks at you with shock. Why did you do that?",
+            "goto": "eval_1_result"
+          },
+          {
+            "condition": null,
+            "type": "else",
+            "content": "*set self_belief %-10",
+            "goto": "eval_1_result"
+          },
+          {
+            "condition": null,
+            "type": "else",
+            "content": "*set self_belief %-5",
+            "goto": "eval_1_result"
+          }
+        ]
+      }
+    ],
+    "choices": [
+      {
+        "text": "I focus purely on my visuals. I catch the light and charm the camera.",
+        "nextScene": null,
+        "effects": []
+      }
+    ]
+  },
+  "eval_1_result": {
+    "id": "eval_1_result",
+    "text": "The music fades. You bow, panting.\n\"Thank you. Next.\"\nThe next morning, Hana's locker is empty. She is gone.\nBut there is no time to mourn.\n\"Line up!\" the Manager barks. \"Weekly Body Check.\"\nIt is the Weigh-In. The most dreaded day of the week.\nYou stand in a line in your underwear while the staff measures you with cold tape.\nThe Manager reads the digital scale out loud for everyone to hear.\n\"${surname} ${name}...\" he looks at the number.\n\"You gained 0.4kg since last week.\"\nThe room is silent. The other trainees look away, terrified it will happen to them next.\n\"Do you want to be a pig or an idol?\" he asks casually, writing something red in your file.\nHow do you react to the humiliation?",
+    "choices": [
+      {
+        "text": "I decide to starve myself. I will do whatever it takes to be an idol.[b]TRAIT GAINED: EATING DISORDER[/b]",
+        "nextScene": null,
+        "effects": [
+          "*set trauma_points + 2",
+          "*set physical -15",
+          "*set ruthless +10",
+          "*set eating_disorder_flag true"
+        ],
+        "resultText": "The word \"pig\" feels like a hot, itchy weight on your chest.\n        At first, it’s just the rumbles. Your stomach is shouting at you, a big, angry, hollow sound that makes your legs feel like jelly during dance practice. You think about bread, about the way it smells, about how much you just want to be a normal kid who eats without thinking.\n        But then you look at the posters on the practice room wall. You see Jungkook’s abs, the way every muscle looks like it was carved from stone. You see Lalisa’s waist, so small and perfect it doesn't even look real. They don't have \"0.4kg extra.\" They are icons. And if you want to stand on the same stage as them, you have to be perfect too.\n        You decide to turn the rumbles into a secret mission. A game. You start to count, not the steps of the dance, but the numbers. A single grape is 2. A bite of chicken is a mistake you have to fix with an extra hour of cardio. If you can just control the numbers, you can carve yourself into a masterpiece. You aren't \"hungry\" anymore. You're just winning. You're becoming a product that doesn't break\n        [b]TRAIT GAINED: EATING DISORDER[/b]\n        [i](System: You have developed an unhealthy relationship with food. This will restrict certain choices and drain your Physical stats significantly.)[/i]\n        \"Understood, sir,\" you say, your voice small but steady. \"It won't happen again. I'll be better.\""
+      },
+      {
+        "text": "I dissociate. I stare at the wall and pretend I'm not here.",
+        "nextScene": null,
+        "effects": [
+          "*set trauma_points + 1",
+          "*set the_mask %+15"
+        ],
+        "resultText": "It's just numbers. It's just flesh. You float above your body, watching the scene like a movie.\n        You don't feel the shame. You don't feel anything."
+      },
+      {
+        "text": "I clench my fists. This system is sick, not me.",
+        "nextScene": "month_6_rain",
+        "effects": [
+          "*set rebellion %+10",
+          "*set self_belief +5"
+        ],
+        "resultText": "You know that 0.4kg is just water weight.\n        His words burn, but you refuse to let them destroy you.\n        You eat dinner that night out of spite."
+      }
+    ]
+  },
+  "month_6_rain": {
+    "id": "month_6_rain",
+    "text": "Age 15. Month 6.\n*set stress +10\n[i](System: the cold is starting to affect you . Stress +10)[/i]\nThe rainy season has hit Seoul.\nThe sky is a bruise of dark grey clouds. The rain falls in thick, heavy sheets, turning the grey concrete of the city into a blurred watercolor painting.\nYou are standing at the glass doors of the Titan building, stuck. You didn't bring an umbrella.\nYou are shivering in your thin practice clothes, hugging your arms as you stare at the downpour.\nSuddenly, a sleek, black luxury sedan pulls up to the curb.\nA chauffeur in a suit steps out and opens the back door. A trainee steps out. It is Haneul.\nEveryone knows Haneul. They call Haneul the Royal.\nHaneul has never raised a voice. Haneul always bows 90 degrees.\nYou look at Haneul.\nHaneul is...\n\nYou feel a hot, ugly knot of jealousy tighten in your chest.\n    While you were sweating in the basement practicing basic steps, Haneul was getting pampered in a black car.\n    It's not fair. Why is Haneul the chosen one?",
+    "choices": [
+      {
+        "text": "A handsome young man.",
+        "nextScene": null,
+        "effects": [
+          "*set haneul_gender \"male\"",
+          "*set h_he \"he\"",
+          "*set h_him \"him\"",
+          "*set h_his \"his\""
+        ]
+      },
+      {
+        "text": "A beautiful young woman.",
+        "nextScene": null,
+        "effects": [
+          "*set haneul_gender \"female\"",
+          "*set h_he \"she\"",
+          "*set h_him \"her\"",
+          "*set h_his \"her\""
+        ]
+      },
+      {
+        "text": "A striking person with an androgynous look.",
+        "nextScene": null,
+        "effects": [
+          "*set haneul_gender \"nb\"",
+          "*set h_he \"they\"",
+          "*set h_him \"them\"",
+          "*set h_his \"their\""
+        ],
+        "resultText": "Haneul is wearing full stage makeup and an outfit that costs more than your parents' house.\nHaneul spots you shivering by the door. Instead of rushing inside, ${h_he} stops, waving the driver away.\n\"You're soaked,\" a soft voice says.\nYou stare at the clothes.\n\"Where were you? Trainees aren't allowed to leave the building.\"\n\"Internal profile shoot,\" Haneul whispers, looking a bit guilty about the special treatment.\n\"The executives wanted to test my visuals for the investor portfolio. It's... it's nothing, really. Just standing around.\""
+      },
+      {
+        "text": "Look up, surprised. \"I'm fine. Just waiting for the rain to stop.\"",
+        "nextScene": null,
+        "effects": [
+          "*set per_bold +5"
+        ],
+        "resultText": "Haneul smiles gently.\n        \"It's not going to stop for hours. You'll catch a cold.\""
+      },
+      {
+        "text": "Shiver visibly. \"I forgot my umbrella. Today is just not my day.\"",
+        "nextScene": null,
+        "effects": [
+          "*set per_gentle +5"
+        ],
+        "resultText": "Haneul's expression softens with sympathy.\n        \"Oh no. We can't have our best vocalist getting sick, can we?\""
+      },
+      {
+        "text": "Glare at the car. \"Must be nice to be the favorite.\"",
+        "nextScene": null,
+        "effects": [
+          "*set rebellion %+5",
+          "*set rel_haneul %-5"
+        ],
+        "resultText": "Haneul flinches, the smile faltering.\n        \"I didn't ask for it,\" ${h_he} says quietly.\nHaneul opens a large, clear umbrella. \"Here,\" ${h_he} says. \"We can share.\"\nHaneul holds it over your head, tilting it so you are fully covered, leaving the expensive jacket slightly exposed to the freezing rain.\n\"Shall we?\" Haneul asks, offering a warm, perfect smile."
+      },
+      {
+        "text": "I blush and step close. It feels like a scene from a drama.",
+        "nextScene": null,
+        "effects": [
+          "*set rel_haneul %+10",
+          "*set romance_haneul true",
+          "*set stress %-5"
+        ],
+        "resultText": "The world goes quiet under the plastic canopy.\n        It's intimate.\n        You're really kind, Haneul, you whisper.\n        And you're really talented, Haneul replies effortlessly.\n        I watch you in dance class sometimes. You have something I don't.\n        I hope we both debut, Haneul says softly, closing the umbrella as you reach the lobby.\n        Water drips from ${h_his} wet shoulder, but there is no complaint.\n        I think... I think I'd like standing on stage next to you.\n        ${h_He} bows politely and heads to the elevator, leaving you standing there, a little less cold than before."
+      },
+      {
+        "text": "\"I can walk myself.\" But I accept the shelter anyway.",
+        "nextScene": null,
+        "effects": [
+          "*set the_mask %+5"
+        ],
+        "resultText": "Haneul chuckles softly.\n        I know you can.\n        But it's nicer to walk together, isn't it?\n        I hope we both debut, Haneul says softly, closing the umbrella as you reach the lobby.\n        Water drips from ${h_his} wet shoulder, but there is no complaint.\n        I think... I think I'd like standing on stage next to you.\n        ${h_He} bows politely and heads to the elevator, leaving you standing there, a little less cold than before."
+      },
+      {
+        "text": "\"Thanks. I owe you one.\"",
+        "nextScene": "meet_the_others",
+        "effects": [
+          "*set rel_haneul %+5"
+        ],
+        "resultText": "No debts between teammates, Haneul says simply.\n        You walk the short distance to the dorms together, shoulder to shoulder.\n        For a moment, the brutal competition of Titan Entertainment fades away. Haneul has a calming aura, like a human sedative.\n        I hope we both debut, Haneul says softly, closing the umbrella as you reach the lobby.\n        Water drips from ${h_his} wet shoulder, but there is no complaint.\n        I think... I think I'd like standing on stage next to you.\n        ${h_He} bows politely and heads to the elevator, leaving you standing there, a little less cold than before."
+      }
+    ]
+  },
+  "meet_the_others": {
+    "id": "meet_the_others",
+    "text": "Age 15. Month 9.\nTitan decides to test your \"Chemistry.\"\nYou are assigned to a temporary team for a showcase evaluation.\n\nYou walk into Practice Room 3. Four other trainees are waiting.",
+    "conditionals": [
+      {
+        "branches": []
+      },
+      {
+        "branches": []
+      },
+      {
+        "branches": []
+      },
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "gender = \"nb\"",
+            "type": "if",
+            "content": "Titan is trying something experimental: A Co-ed Group.\n    You see two boys and two girls waiting for you. This project will either revolutionize the industry or fail spectacularly.",
+            "goto": "group_description_done"
+          },
+          {
+            "condition": null,
+            "type": "else",
+            "content": "These aren't just random faces. These are the top trainees in your wing.",
+            "goto": "group_description_done"
+          },
+          {
+            "condition": "gender = \"nb\"",
+            "type": "if",
+            "content": "*set kang_he \"he\"\n*set kang_him \"him\"\n*set kang_his \"his\"\n*set rio_he \"he\"\n*set rio_him \"him\"\n*set rio_his \"his\"\n*set jiwon_he \"she\"\n*set jiwon_him \"her\"\n*set jiwon_his \"her\"\n*set yuri_he \"she\"\n*set yuri_him \"her\"\n*set yuri_his \"her\"",
+            "goto": null
+          },
+          {
+            "condition": "gender = \"female\"",
+            "type": "if",
+            "content": "*set kang_he \"she\"\n*set kang_him \"her\"\n*set kang_his \"her\"\n*set rio_he \"she\"\n*set rio_him \"her\"\n*set rio_his \"her\"\n*set jiwon_he \"she\"\n*set jiwon_him \"her\"\n*set jiwon_his \"her\"\n*set yuri_he \"she\"\n*set yuri_him \"her\"\n*set yuri_his \"her\"",
+            "goto": null
+          },
+          {
+            "condition": "gender = \"male\"",
+            "type": "if",
+            "content": "*set kang_he \"he\"\n*set kang_him \"him\"\n*set kang_his \"his\"\n*set rio_he \"he\"\n*set rio_him \"him\"\n*set rio_his \"his\"\n*set jiwon_he \"he\"\n*set jiwon_him \"him\"\n*set jiwon_his \"his\"\n*set yuri_he \"he\"\n*set yuri_him \"him\"\n*set yuri_his \"his\"",
+            "goto": null
+          }
+        ]
+      }
+    ]
+  },
+  "group_description_done": {
+    "id": "group_description_done",
+    "text": "There is Kang, the oldest. ${kang_he} is stretching with intense focus.\nKang is known as the \"Dancing Machine\".\nThere is Rio, sitting on the speaker, rapping to ${rio_him}self.\n${rio_he} has a playful, chaotic energy and hair dyed a bright, unnatural red.\nThere are Jiwon and Yuri, whispering in the corner. They are the vocal powerhouses, but they look terrified.\nKang claps ${kang_his} hands. \"Alright, listen up. We have 48 hours to perfect this choreo. No sleeping.\"\nRio groans, throwing ${rio_his} head back. \"Easy for you to say, Cyborg. Some of us need beauty sleep.\"\nHow do you position yourself in this group?",
+    "choices": [
+      {
+        "text": "I align myself with Kang. We need discipline to win.",
+        "nextScene": null,
+        "effects": [
+          "*set rel_kang %+10",
+          "*set dance %+5",
+          "*set ruthless +5"
+        ],
+        "resultText": "Kang nods at you approvingly.\n        \"Finally. Someone who takes this seriously.\"\n        You and Kang lead the practice, drilling the steps until everyone hates you, but the synchronization is perfect."
+      },
+      {
+        "text": "I joke around with Rio to lighten the mood.",
+        "nextScene": null,
+        "effects": [
+          "*set rel_rio %+10",
+          "*set charisma %+5",
+          "*set per_bold +5"
+        ],
+        "resultText": "Rio grins and high-fives you.\n        \"Exactly! If we're gonna suffer, let's have fun.\"\n        The practice is chaotic, but the energy is electric.\n        Even Kang cracks a smile eventually."
+      },
+      {
+        "text": "I help Jiwon and Yuri with the vocals. They look nervous.",
+        "nextScene": "jiwon_yuri_advice",
+        "effects": [
+          "*set rel_jiwon %+10",
+          "*set rel_yuri %+10",
+          "*set per_gentle +5",
+          "*set vocals %+5"
+        ],
+        "resultText": "\"Thank you,\" Jiwon whispers.\n        \"Kang moves too fast for us.\"\n        You spend the extra hours teaching them the harmonies.\n        You become the glue holding the team together."
+      }
+    ]
+  },
+  "jiwon_yuri_advice": {
+    "id": "jiwon_yuri_advice",
+    "text": "The evaluation goes well, but it was exhausting.\nLater that night, while you are refilling your water bottle, Jiwon approaches you timidly. Yuri is standing right behind ${jiwon_him}.\n\"Hey, ${name},\" Jiwon starts, fidgeting with the hem of ${jiwon_his} shirt.\n\"You... you always look so composed. The diet, the training... how do you do it? We feel like we're drowning.\"\nThey are looking at you with wide, desperate eyes.\n\n[i](Your Condition forces this choice)[/i]\n            You stare at them. You want to tell them to be healthy.\n            But the voice in your head screams louder.\n            \"Do you want to debut?\" you snap, your voice harsh from hunger.\n            \"Then stop complaining about food. We don't get to eat and dream at the same time.\"",
+    "choices": [
+      {
+        "text": "\"It's about balance. Eat healthy, sleep when you can. Don't starve yourselves.\"",
+        "nextScene": "meet_the_others_casual",
+        "effects": [
+          "*set per_gentle +5",
+          "*set rel_jiwon %+5",
+          "*set rel_yuri %+5"
+        ],
+        "selectable_if": "eating_disorder_flag = false",
+        "resultText": "Jiwon sighs, relieved.\n        \"The trainers say we need to lose weight, but... okay. We'll try to stay healthy.\"\n        Yuri smiles at you. \"You're like a real leader.\""
+      },
+      {
+        "text": "\"Just fake it until you make it. That's what I do.\"",
+        "nextScene": "meet_the_others_casual",
+        "effects": [
+          "*set the_mask %+5",
+          "*set charisma %+5",
+          "*set rel_rio %+5"
+        ],
+        "selectable_if": "eating_disorder_flag = false",
+        "resultText": "Rio, who was eavesdropping, laughs from the doorway.\n        \"Best advice ever.\"\n        Jiwon and Yuri look confused, but they giggle. \"Okay. Fake it. We can do that.\""
+      },
+      {
+        "text": "\"You have to be hungry. Literally. If you aren't suffering, you aren't working hard enough.\"",
+        "nextScene": null,
+        "effects": [
+          "*set ruthless +10",
+          "*set physical %-5",
+          "*set rel_jiwon %-5",
+          "*set rel_yuri %-5"
+        ]
+      }
+    ]
+  },
+  "ruthless_reaction": {
+    "id": "ruthless_reaction",
+    "text": "Jiwon flinches. \"Oh. I see.\"\nThey exchange a worried look but nod. \"Right. Suffering is part of the job. Thanks, ${name}.\"\nThey walk away looking even more stressed than before."
+  },
+  "meet_the_others_casual": {
+    "id": "meet_the_others_casual",
+    "text": "3 hours later (in the spongebob voice)\nAge 15. Month 9.\nIt is 11:00 PM. Lights out.\nYou and Jun are lying in your bunks, staring at the glow in the dark stars Jun stuck to the ceiling.\nSuddenly, there is a sharp tap on your door. Not the heavy pound of a manager, but a rhythmic, secret code.\nTap tap tap tap... tap tap.\nJun freezes. \"Did we get caught?\"\nBefore you can answer, the door clicks open.\nA head with bright red hair pops in. It's Rio from three doors down.\n\"We are going to the cafeteria,\" Rio whispers, a mischievous glint in ${rio_his} eyes.\n\"Are you insane?\" Jun whispers back. \"The Night Manager patrols that hallway every twenty minutes.\"\n\"Exactly,\" Rio grins.\n\"That is what makes it fun. Kang, Jiwon, and Yuri are already waiting by the service elevator. You in?\"\nYou and Jun slip into your slippers and follow Rio into the hallway.\nYour eyes are struggling to see anything because it is pitch black except for the stick lights Rio somehow smuggled in.\nRio says proudly \"My cousin smuggled them in\" while cleaning invisible lint from ${rio_his} shoulder.\nYou reach the cafeteria.\nIt is a vast, empty space of stainless steel and polished stone.\nThe rows of tables look something out of a sci-fi movie.\nKang is sitting at the furthest corner table, checking ${kang_his} watch.\nJiwon and Yuri are huddled together, jumping at every hum of the industrial refrigerators.\n\"You actually came,\" Kang says, looking both relieved and annoyed. \"Sit. Quickly.\"\nRio produces a plastic bag filled with contraband: spicy ramen cups and chocolate bars.\n\"The vending machine in the staff lounge was unlocked,\" Rio brags, passing out the food.\n\"A gift from the gods of Titan.\"\nAs you all sit around the cold metal table, the atmosphere shifts.\nFor a moment, you are not trainees in a cookie cutter.\nYou cant wait to have a secret feast, you're starving.\nYuri looks at the group, her voice small.\n\"I was thinking... if we all debut together, we should come back here. On our first anniversary. We can buy the whole vending machine next time.\"\nThe idea of a future together hangs in the air, fragile and hopeful just like Yuri.\nWhat do you do now?",
+    "choices": [
+      {
+        "text": "I grab a bag of chips and bond with Rio over how crazy the managers are.",
+        "nextScene": null,
+        "effects": [
+          "*set rel_rio %+10",
+          "*set charisma %+5",
+          "*set rebellion %+5"
+        ],
+        "resultText": "\"Pass the chips,\" you say.\n        \"Did you see Director Park today? He looked like a statue that was about to crack.\"\n        Rio laughs \"you said crack\", and for a second, the sterile cafeteria feels warm.\n        You spend the night whispering jokes about the staff."
+      },
+      {
+        "text": "I talk strategy with Kang. We need to plan for the next evaluation.",
+        "nextScene": null,
+        "effects": [
+          "*set rel_kang %+10",
+          "*set ruthless +5",
+          "*set self_belief %+5"
+        ],
+        "resultText": "\"The team battle is coming,\" you whisper, leaning over the table.\n        Kang nods, appreciating your focus even in the middle of a heist.\n        You two bond over your shared ambition and the drive to win."
+      },
+      {
+        "text": "I sit with Jiwon and Yuri and try to calm their nerves.",
+        "nextScene": "month_12_start",
+        "effects": [
+          "*set rel_jiwon %+10",
+          "*set rel_yuri %+10",
+          "*set per_gentle +5"
+        ],
+        "resultText": "\"We are going to make it,\" you say softly, looking at them.\n        \"All of us. Titan picked us for a reason.\"\n        Jiwon sighs, the tension in ${jiwon_his} shoulders dropping just a little.\nSuddenly, a flashlight beam sweeps across the far entrance.\n\"Manager!\" Kang hisses.\nYou all dive under the industrial tables, hearts hammering against the cold floor.\nYou hold your breath as the footsteps echo: slow, rhythmic, and terrifying.\nThe light passes. The heavy doors click shut.\nRio lets out a shaky laugh. \"Okay. Maybe room 404 is safer next time. Let's get out of here.\"\nYou sneak back to your dorms, feeling a little less worried about the next evaluation.\nYou are exhausted, but you feel like a team."
+      }
+    ]
+  },
+  "month_12_start": {
+    "id": "month_12_start",
+    "text": "Age 15. Month 12.\nYou have survived a year.\nThe fear has turned into a dull, aching exhaustion. You are stronger, but you are hollow."
+  },
+  "cafeteria_scene": {
+    "id": "cafeteria_scene",
+    "text": "12:30 PM.\nThe Cafeteria.\nIt is lunch time, or as the trainees call it, The Starvation Station.\nThe room is a United Nations of tired teenagers. Everyone is picking at the same sad meal: boiled chicken breast, unsalted broccoli, and a single cherry tomato.\nYou look across the room.\nHaneul is sitting in the center, posture perfect, eating with the grace of royalty.\nEven in a sweat-stained practice tee, Haneul looks like a Prince/Princess from a K-Drama.\nAnd then, there is ${rival_name}.\nCoco is sitting on top of the table not the bench, the table! wearing headphones around ${r_his} neck.\n${r_He} looks different. Maybe it’s the bleach blonde streaks in ${r_his} hair, or the way ${r_he} wears ${r_his} uniform loosely, but ${r_he} screams Main Character Energy.\nLike a rebellious pop-punk star dropped into a convent.\nYou walk past ${rival_name}'s table to dump your tray.\nCoco is scrolling through a phone hidden under ${r_his} leg.\nOn the screen, you catch a glimpse of a photo: A group of American teenagers at a high school Prom, holding red solo cups and laughing.\nAish... so boring, Coco mutters in broken Korean, swiping the photo away aggressively. Why is everyone here so... stiff?\nCoco looks up, catching you staring. ${r_He} doesn't flinch. ${r_He} just smirks, popping a bubble of gum.\nYou.\nWhat are you looking at? Never seen a foreigner before?",
+    "choices": [
+      {
+        "text": "\"I heard you snapped at the dance teacher. You have a death wish?\"",
+        "nextScene": null,
+        "effects": [
+          "*set rebellion %+8",
+          "*set rel_rival %+10"
+        ],
+        "resultText": "Coco grins, revealing a sharp canine tooth.\n        He was being a Kkondae. Yelling just to hear his own voice.\n        I just told him to 'Chill out' in English. He didn't understand, but he got the vibe."
+      },
+      {
+        "text": "\"That photo... was that Prom?\"",
+        "nextScene": null,
+        "effects": [
+          "*set per_gentle +5",
+          "*set rel_rival %+5"
+        ],
+        "resultText": "Coco stiffens, then sighs, looking at the black screen.\n        Yeah. My friends back in LA. They're worrying about corsages and limos.\n        ${r_He} laughs bitterly.\n        I flew 6,000 miles to be a star, and now I'm jealous of a school dance. Pathetic, right?"
+      },
+      {
+        "text": "\"You're sitting on the table. If Park sees you, you're dead.\"",
+        "nextScene": null,
+        "effects": [
+          "*set scandal_risk %-5"
+        ],
+        "resultText": "Coco laughs, a deep, charismatic sound. Let him see.\n        In America, we sit where we want. This whole 'bow 90 degrees' thing is killing my back.\n        ${r_He} hops off the table, but with style. You're strict. Like a little grandpa.\n        Being a trainee is weird, Coco sighs, switching to English.\n        Everyone wants to be famous, but nobody wants to be \"real\". It's all... ${r_He} waves a hand. Fake smiles. Plastic.\n        ${r_He} glances at Haneul. That one. The 'Royal'. Too perfect. It creeps me out.\n        Nobody is that nice without a reason.\nThe whistle blows. Lunch is over.\nCoco stands up, the mask of the Wild Ace sliding back into place.\nI'm sneaking out tonight, ${r_he} whispers, winking at you. Don't snitch."
+      }
+    ]
+  },
+  "month_12_choices": {
+    "id": "month_12_choices",
+    "text": "You have one night off.\nYou need to escape the pressure.",
+    "choices": [
+      {
+        "text": "Coco invited me to sneak out. I want some trouble.",
+        "nextScene": "convenience_store_coco",
+        "effects": []
+      },
+      {
+        "text": "I saw Haneul heading to the roof with a ring light. I'm curious.",
+        "nextScene": "rooftop_haneul",
+        "effects": []
+      },
+      {
+        "text": "I've heard rumors of a secret studio in the basement. I want to investigate.",
+        "nextScene": "meeting_eden",
+        "effects": []
+      },
+      {
+        "text": "I stay in the practice room and work on my acting.",
+        "nextScene": "mirror_practice",
+        "effects": []
+      }
+    ]
+  },
+  "rooftop_haneul": {
+    "id": "rooftop_haneul",
+    "text": "*set rel_haneul %+10\n*set stress %-5\nYou walk up the fire escape to the roof.\nThe city lights of Seoul glow in the distance.\nYou find Haneul leaning against the railing.\n${h_He} is holding a brand new, expensive-looking designer bag. ${h_He} has a ring light clipped to ${h_his} phone.\nHi guys!\nHaneul says to the phone, voice bubbly and bright. Look what LuxeMode sent me! It's so cute, right? #OOTD #TitanTrainee.\nHaneul smiles, a perfect, dazzling smile. Click. Click. Click.\nThen, Haneul lowers the phone. The smile vanishes instantly. ${h_He} looks exhausted.\n${h_He} carefully puts the expensive bag back into its box, treating it like a museum artifact.\n${name}?\nHaneul turns around, startled. Oh. I... I didn't see you.",
+    "choices": [
+      {
+        "text": "\"Nice bag. Is that yours?\"",
+        "nextScene": null,
+        "effects": [],
+        "resultText": "Haneul laughs nervously. This? No. I can't afford this. It's a sponsorship.\n        I have to post a photo, then send it back."
+      },
+      {
+        "text": "\"You have a lot of followers, don't you?\"",
+        "nextScene": null,
+        "effects": [
+          "*set charisma %+5"
+        ],
+        "resultText": "Haneul nods. 50,000. People like the 'Prince/Princess' aesthetic.\n        Haneul sits on the concrete floor, pulling ${h_his} knees to ${h_his} chest.\n        Everyone thinks I'm rich, Haneul whispers.\n        Because I post photos in nice clothes and my aunt picks me up in a sedan once a month.\n        But I live in Dorm 502 with three other people. My parents... they don't have money.\n        My dad is sick and my mom can only do so much.\n        Haneul looks at the phone.\n        This is how I pay for his meds and my siblings school supplies .\n        I smile, I promote vitamins and bags I'll never own, and I send the money to Busan."
+      },
+      {
+        "text": "\"You're a good son/daughter/person, Haneul. That's honorable.\"",
+        "nextScene": "month_12_grind",
+        "effects": [
+          "*set rel_haneul %+7",
+          "*set per_gentle +5"
+        ],
+        "resultText": "Haneul looks at you with soft eyes.\n                You think so? Sometimes I feel like a liar. But... hearing you say that makes it feel better."
+      },
+      {
+        "text": "\"It's smart. Use the system before it uses you.\"",
+        "nextScene": "month_12_grind",
+        "effects": [
+          "*set ruthless +5",
+          "*set rel_haneul %-2"
+        ],
+        "resultText": "Haneul nods firmly.\n                Umm i guess. atleast Titan don't own my Instagram account. Yet."
+      },
+      {
+        "text": "\"Can you teach me? I need cash too.\"",
+        "nextScene": "month_12_grind",
+        "effects": [
+          "*set rel_haneul %+10"
+        ],
+        "resultText": "Haneul giggles, the sound genuine this time.\n                Sure.\n                Step one: Find your 'good side'. Step two: Lie about how much you love matcha.\n                You sit on the roof for an hour, watching the city. Haneul isn't the Royal up here.\n                ${h_He} is just a kid trying to support a family."
+      }
+    ]
+  },
+  "convenience_store_coco": {
+    "id": "convenience_store_coco",
+    "text": "*set rel_rival %+15\n*set stress %-15\n*set physical %+10\n*set rebellion %+22\nYou and Jun are sneaking out to the convenience store.\nJust as you reach the side door, a shadow detaches itself from the wall.\n\"Going somewhere?\" Coco asks, smirking.\n${r_He} pulls down ${r_his} black face mask. \"Without me?\"\n\"We... we were just getting water,\" Jun stammers, terrified of the Ace.\n\"Relax,\" Coco laughs, throwing an arm around Jun's shoulders. \"I'm starving. Let's go.\"\nAt the Store:\nYou are eating spicy ramen.\nJun is nervous. Coco is buying three bags of gummy bears and a soda.\n${r_He} look at you, eyes scanning your face.\n\"You look tired, ${name},\" Coco says, voice surprisingly soft.\n\"You working too hard?\"",
+    "choices": [
+      {
+        "text": "\"I have to. I'm not a natural genius like you.\"",
+        "nextScene": "month_12_grind",
+        "effects": [
+          "*set rel_rival %+5"
+        ],
+        "resultText": "${r_He} snorts.\n        \"Genius? Please. I practice until my feet bleed. I just make it look easy.\""
+      },
+      {
+        "text": "\"I'm fine. Just thinking about the evaluation.\"",
+        "nextScene": "month_12_grind",
+        "effects": [
+          "*set rel_rival %+2"
+        ],
+        "resultText": "${r_He} rolls his eyes. \"Stop thinking. Eat the gummy bears.\""
+      },
+      {
+        "text": "\"I was hoping to run into you, actually.\"",
+        "nextScene": "month_12_grind",
+        "effects": [
+          "*set romance_coco true",
+          "*set rel_rival %+7"
+        ],
+        "resultText": "Coco pauses, a gummy bear halfway to ${r_his} mouth.\n        ${r_He} blushes, looking away quickly.\n        \"Smooth,\" ${r_he} mutters, trying to hide a smile. \"Don't get used to it.\"\n        Coco dumps the snacks on the counter. \"My treat. Consider it an investment in my future backup dancer.\"\n        \"I'm not your backup dancer,\" you argue with a pang of annoyance.\n        \"We'll see,\" Coco winks."
+      }
+    ]
+  },
+  "meeting_eden": {
+    "id": "meeting_eden",
+    "text": "*set vocals %+5\n*set rel_eden %+10\nYou find Studio B in the basement. It smells like coffee and heated electronics.\nInside, a man is slumped over a mixing desk, hair messy. It is the legendary producer, Eden.\nHe isn't alone.\nCoco is there too, nodding to a beat before leaving. \"Later, old man,\" Coco calls out, brushing past you.\nEden spins around and sees you. \"Great. Shift change. You want to learn?\"",
+    "choices": [
+      {
+        "text": "\"Yes. Teach me how to make a hit.\"",
+        "nextScene": "month_12_grind",
+        "effects": [
+          "*set ruthless +5"
+        ],
+        "resultText": "Eden smirks. \"Ambitious. Sit down.\""
+      },
+      {
+        "text": "\"I just want to escape the dorms.\"",
+        "nextScene": "month_12_grind",
+        "effects": [],
+        "resultText": "Eden nods. \"Valid. Put these headphones on.\"\n        You spend the night learning about mixing. It's the only place in the building where you feel in control."
+      }
+    ]
+  },
+  "mirror_practice": {
+    "id": "mirror_practice",
+    "text": "*set charisma %+10\n*set the_mask %+10\n*set stress %+10\n*set physical %-5\nIt is 2 AM.\nYou are alone in the practice room.\nYou are trying to practice your Ending Fairy face.\nYou look like a dying fish, a voice says.\nYou spin around. Coco is leaning against the doorway.\nYou're trying too hard, ${r_he} says. It's about confidence.\nCoco walks over, standing incredibly close to you to fix your posture.\nYou can smell ${r_his} expensive cologne/perfume.",
+    "choices": [
+      {
+        "text": "Stand your ground. \"Then show me.\"",
+        "nextScene": "month_12_grind",
+        "effects": [
+          "*set rel_rival %+5",
+          "*set romance_coco true",
+          "*set ruthless +5"
+        ],
+        "resultText": "Coco smirks, staring right into your eyes.\n        The air is electric.\n        Something about your posture changes, becomes tighter like a prey waiting to be devoured.\n        You look deep into Coco's eyes and try not to miss a beat while your cheeks get warmer by the minute, meanwhile Coco seems unfazed.\n        Watch closely, ${r_he} whispers while placing one hand on your waist and another on your cheek.\n        It's a mask, Coco says, looking at the mirror.\n        Put it on, take it off. If you let them see the real you, they'll eat you alive."
+      },
+      {
+        "text": "Step back. \"I've got it, thanks.\"",
+        "nextScene": "month_12_grind",
+        "effects": [],
+        "resultText": "Coco shrugs, stepping away. Suit yourself.\n        It's a mask, Coco says, looking at the mirror.\n        Put it on, take it off. If you let them see the real you, they'll eat you alive."
+      }
+    ]
+  },
+  "month_12_grind": {
+    "id": "month_12_grind",
+    "text": "Back to reality. The next evaluation is coming.\nIt has been twelve months since you first stepped through the doors of the company.\n*set stress %+20\n[i](System: A year of training takes its toll. Stress increased by 20%)[/i]\nA full year of blood, sweat, and endless repetition in the practice rooms.\nYou look different than you did on day one. The \"grind\" has carved a new silhouette out of you.\nHow has the year of training shaped your physique?",
+    "choices": [
+      {
+        "text": "I've become lean and athletic, built for explosive power.",
+        "nextScene": "reflection_complete",
+        "effects": [
+          "*set p_body_type \"lean and athletic\"",
+          "*set dance %+5",
+          "*set physical %+5",
+          "*set stress %+5"
+        ]
+      },
+      {
+        "text": "I've developed a slender and elegant frame, focused on fluid lines.",
+        "nextScene": "reflection_complete",
+        "effects": [
+          "*set p_body_type \"slender and elegant\"",
+          "*set visual %+5",
+          "*set physical %-5",
+          "*set stress %+10"
+        ],
+        "resultText": "Maintaining this weight is a constant mental battle."
+      },
+      {
+        "text": "I'm soft but toned; I prioritized health over aesthetics.",
+        "nextScene": "reflection_complete",
+        "effects": [
+          "*set p_body_type \"soft but toned\"",
+          "*set physical %+15",
+          "*set stress %-5",
+          "*set visual %-5"
+        ],
+        "resultText": "The managers hate it, but you feel strong."
+      },
+      {
+        "text": "I'm sharp and agile, appearing fast and dangerous.",
+        "nextScene": "reflection_complete",
+        "effects": [
+          "*set p_body_type \"sharp and agile\"",
+          "*set charisma %+5",
+          "*set stress %+5"
+        ]
+      }
+    ]
+  },
+  "reflection_complete": {
+    "id": "reflection_complete",
+    "text": "You dance for 2 hours and then you allow yourself to wipe the sweat from your brow.\nYou are ready for what comes next.\n${rival_name} is getting arrogant (side eye >_>).\n${r_He} thinks ${r_he} is untouchable because ${r_he} is the CEO's favorite.\nHow do you prepare?",
+    "choices": [
+      {
+        "text": "I challenge ${rival_name} to a dance-off. I need to assert dominance.",
+        "nextScene": "night_before_year1",
+        "effects": [
+          "*set dance %+10",
+          "*set charisma %+5",
+          "*set physical %-5",
+          "*set self_belief %+5",
+          "*set rel_rival %+4"
+        ],
+        "resultText": "You keep up with ${r_him}.\n        ${r_He} looks shocked. You earned ${r_his} respect."
+      },
+      {
+        "text": "I focus on my weaknesses. I can't have any holes in my armor.",
+        "nextScene": "night_before_year1",
+        "effects": [
+          "*set vocals %+10",
+          "*set dance %+10",
+          "*set stress %+5",
+          "*set physical %-5"
+        ],
+        "resultText": "You round out your skills."
+      },
+      {
+        "text": "I play politics. I make sure the trainers see me working late.",
+        "nextScene": "night_before_year1",
+        "effects": [
+          "*set ruthless +5",
+          "*set the_mask %+10",
+          "*set scandal_risk %-10",
+          "*set rel_manager %+10"
+        ],
+        "resultText": "Hard work is good.\n        Being SEEN working hard is better."
+      }
+    ]
+  },
+  "night_before_year1": {
+    "id": "night_before_year1",
+    "text": "Age 16. Month 12.\nIt has been a year since you joined Titan.\nThe dorm room is still a pristine, mega super duper shoe box.\nThe agency forbids \"clutter,\" claiming it distracts from the goal of perfection.\nBut over the last twelve months, you have carved out a tiny sanctuary on your shelf: a secret reminder of who you were before you became a trainee.\nWhat is the one thing that keeps you sane in this place?",
+    "choices": [
+      {
+        "text": "My sketchbook. I draw the other trainees when they aren't looking.",
+        "nextScene": null,
+        "effects": [
+          "*set hobby \"Sketching\"",
+          "*set visual %+7",
+          "*set stress %-8"
+        ],
+        "resultText": "It's your escape.\n        When the dance routines turn your brain to mush, you draw weird caricatures of the instructors or fashion designs you'll never wear.\n        It keeps your eyes sharp."
+      },
+      {
+        "text": "A cheap ukulele I smuggled in. I play it softly when the cameras are off.",
+        "nextScene": null,
+        "effects": [
+          "*set hobby \"Music\"",
+          "*set vocals %+5",
+          "*set stress %-5"
+        ],
+        "resultText": "Titan wants you to sound like a pop star.\n        But with this, you can just play folk songs and breathe. It reminds you that music used to be fun."
+      },
+      {
+        "text": "A stack of superhero comics hidden under my mattress.",
+        "nextScene": null,
+        "effects": [
+          "*set hobby \"Comics\"",
+          "*set self_belief %+5",
+          "*set stress %-10"
+        ],
+        "resultText": "In these pages, people save the world with superpowers.\n        It's a nice break from a world where your only power is \"smiling while tired.\""
+      },
+      {
+        "text": "A retro handheld console. I play RPGs under the blanket.",
+        "nextScene": null,
+        "effects": [
+          "*set hobby \"Gaming\"",
+          "*set stress %-15",
+          "*set physical %-5"
+        ],
+        "resultText": "You save the princess, slay the dragon, and pause the game.\n        It's the only place where you can make mistakes and just hit \"Restart.\""
+      },
+      {
+        "text": "My secret stash of fashion magazines. I study the trends like a Bible.",
+        "nextScene": null,
+        "effects": [
+          "*set hobby \"Fashion\"",
+          "*set visual %+10",
+          "*set ruthless +5"
+        ],
+        "resultText": "You don't just look at the clothes; you analyze them.\n        You know exactly what image Titan is trying to sell. One day, you'll be on the cover."
+      },
+      {
+        "text": "A worn out basketball. I sneak out to the courtyard at night to shoot hoops.",
+        "nextScene": null,
+        "effects": [
+          "*set hobby \"Basketball\"",
+          "*set physical %+10",
+          "*set stress %-5"
+        ],
+        "resultText": "The rhythm of the ball hitting the pavement is your meditation.\n        It's the only time you get to sweat on your own terms."
+      },
+      {
+        "text": "A professional makeup kit. I practice contouring on Jun.",
+        "nextScene": null,
+        "effects": [
+          "*set hobby \"Makeup\"",
+          "*set visual %+10",
+          "*set rel_jun %+5"
+        ],
+        "resultText": "\"Make me look fierce,\" Jun always says.\n        You treat faces like canvases. You know how to hide the dark circles and the stress."
+      },
+      {
+        "text": "A hard drive full of classic cinema. I analyze the acting.",
+        "nextScene": null,
+        "effects": [
+          "*set hobby \"Cinema\"",
+          "*set charisma %+5",
+          "*set the_mask %+5"
+        ],
+        "resultText": "You watch the greats, their micro-expressions, their timing.\n        You aren't just an idol; you want to become more than just a one trick pony.\nThe lights are out.\nThe blue glow of the humidifier is the only light in the room.\n\"Hey, ${name}?\" Jun whispers from the bottom bunk.\n\"Yeah?\"\nJun is quiet for a moment.\n\"I was thinking about the first day we met. Do you remember?\""
+      },
+      {
+        "text": "\"I remember. We were shaking in our gym clothes.\"",
+        "nextScene": null,
+        "effects": [
+          "*set rel_jun %+5"
+        ],
+        "resultText": "\"I was shaking so bad,\" Jun whispers.\n        \"I thought I was going to throw up on my shoes.\""
+      },
+      {
+        "text": "\"I remember. You were breaking the rules immediately.\"",
+        "nextScene": null,
+        "effects": [
+          "*set rel_jun %+5",
+          "*set per_bold +5"
+        ],
+        "resultText": "Jun giggles softly.\n        \"I was starving! I couldn't help it.\""
+      },
+      {
+        "text": "\"That feels like a lifetime ago.\"",
+        "nextScene": null,
+        "effects": [
+          "*set stress %+5"
+        ],
+        "resultText": "\"It does,\" Jun agrees. \"We were just kids then. Now look at us.\"\n\"I can still smell those spicy noodles,\" Jun says dreamily.\n\"You walked in and caught me red-handed, mouth full of ramen. I thought you were going to report me.\"\nAnd instead, you reply..."
+      },
+      {
+        "text": "\"I realized right then that if you were brave enough to risk expulsion for MSG, you were worth knowing.\"",
+        "nextScene": null,
+        "effects": [
+          "*set rel_jun %+15",
+          "*set per_bold +5",
+          "*set charisma %+5"
+        ],
+        "resultText": "Jun lets out a quiet, muffled giggle against the pillow.\n        \"It wasn't bravery, it was pure desperation. But I'm glad you saw it that way. You made me feel like a rebel instead of just a hungry kid.\""
+      },
+      {
+        "text": "\"Reporting you would have been the Idol thing to do. Sitting down to eat was the human thing to do.\"",
+        "nextScene": null,
+        "effects": [
+          "*set rel_jun %+10",
+          "*set the_mask %-10",
+          "*set self_belief %+5"
+        ],
+        "resultText": "\"A human being,\" Jun muses, his voice sounding small in the dark room.\n        \"It's easy to forget we're allowed to be that. You've always been good at reminding me that we aren't just products on a shelf.\""
+      },
+      {
+        "text": "\"I just figured having a roommate who owes me a life-long debt of silence was a smart tactical move.\"",
+        "nextScene": null,
+        "effects": [
+          "*set rel_jun %+8",
+          "*set ruthless +5",
+          "*set charisma %+10"
+        ],
+        "resultText": "\"Aish, you and your tactics!\" Jun huffs playfully, though you can hear the smile in his voice.\n        \"Fine. I'm still paying off that debt, aren't I? I guess I'll have to keep being your best friend until we're both legends.\""
+      },
+      {
+        "text": "\"Honestly? I was just waiting for you to offer me a bite. I was starving too.\"",
+        "nextScene": null,
+        "effects": [
+          "*set rel_jun %+15",
+          "*set per_bold +5"
+        ],
+        "resultText": "Jun laughs, a genuine sound that cuts through the tension of the upcoming evaluation.\n        \"I knew it! I saw that look in your eyes. It wasn't judgment, it was pure envy. We were just two starving wolves in gym clothes.\"\nSilence settles between the bunks again.\nIt feels heavier than it did a year ago. The stakes are real now.\n\"Hey, ${name}?\" Jun asks.\n\"If only one of us makes it past tomorrow... promise me you won't look back. Just reach toward the mic.\""
+      },
+      {
+        "text": "\"I promise. I'll become a star for both of us.\"",
+        "nextScene": null,
+        "effects": [
+          "*set ruthless +5",
+          "*set rel_jun %-5"
+        ],
+        "resultText": "\"Umm okay,\" Jun hesitates. \"That's what I wanted to hear. Don't waste it.\""
+      },
+      {
+        "text": "\"Don't say that. We go together or we don't go at all.\"",
+        "nextScene": null,
+        "effects": [
+          "*set rel_jun %+20",
+          "*set rebellion %+15"
+        ],
+        "resultText": "Jun doesn't answer for a long time.\n        Then, a soft whisper: \"You're too good for this world, ${name}.\""
+      },
+      {
+        "text": "\"If I make it, I'm buying you a ramen factory. We'll swim in spicy broth.\"",
+        "nextScene": null,
+        "effects": [
+          "*set charisma %+10",
+          "*set rel_jun %+10",
+          "*set stress %-5"
+        ],
+        "resultText": "Jun bursts into a wet, sniffling laugh.\n        \"Idiot. You better promise.\"\n        \"I promise. Unlimited noodles,\" you grin. It's easier to joke than to cry."
+      },
+      {
+        "text": "\"Go to sleep, Jun. Emotions burn energy we need for tomorrow.\"",
+        "nextScene": "eval_year1",
+        "effects": [
+          "*set the_mask %+10",
+          "*set stress %-5"
+        ],
+        "resultText": "\"Okay,\" Jun says, voice devoid of hope.\n        \"Goodnight, ${name}.\""
+      }
+    ]
+  },
+  "eval_year1": {
+    "id": "eval_year1",
+    "text": "Director Park is watching today. The atmosphere is suffocating.\n${rival_name} performs first.\nIt is technically flawless, but ${r_he} is chewing gum.\nNow, it is your turn.\n\nYou step forward, but your vision blurs.\n    You simply faint before the music even starts.\n    \"Pathetic,\" Park mutters.\n\nYou perform with terrifying intensity.\n    The painkillers mask the pain, making your movements sharp but slightly manic.\n    Park watches you closely.\n    \"Your eyes look dangerous,\" he notes.\n    [i](Painkillers Bonus: +15 Charisma)[/i]",
+    "conditionals": [
+      {
+        "branches": []
+      },
+      {
+        "branches": []
+      },
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "(dance >= 45) or (vocals >= 45)) or ((charisma >= 45) or (visual >= 45)",
+            "type": "if",
+            "content": "*set passed_eval true\n\nYou power through.\n    Your eyes are fierce. You channel every ounce of frustration into the movement.\n    Director Park nods slowly. \"Good energy.\"",
+            "goto": "eval_year1_result"
+          },
+          {
+            "condition": null,
+            "type": "else",
+            "content": "*set self_belief %-5\n*set rel_manager -10\n\nYou perform well, but it feels average.\n    You blend into the background.\n    Park doesn't even look up from his notes. \"Next.\"",
+            "goto": "eval_year1_result"
+          },
+          {
+            "condition": "hidden_injury",
+            "type": "if",
+            "content": "*set charisma %+15",
+            "goto": null
+          },
+          {
+            "condition": "stress >= 93) and (hidden_injury = false",
+            "type": "if",
+            "content": "*set passed_eval false",
+            "goto": "eval_year1_result"
+          }
+        ]
+      }
+    ]
+  },
+  "eval_year1_result": {
+    "id": "eval_year1_result",
+    "text": "The next day.\nOne of the trainees, Alex, is gone.\nErased because they were chewing gum during the evaluation.\n${rival_name}, however, is still here. Of course."
+  },
+  "month_18_birthday": {
+    "id": "month_18_birthday",
+    "text": "Age 16. Month 18. Your Birthday.\nYou are sitting on the cold concrete of the rooftop.\nThe door creaks open.\nIt's Jun.\nJun holds out a generic \"Choco Pie\" wrapper with a single, unlit match in it.\n\"Happy Birthday,\" Jun whispers.\n\"Make a wish.\"",
+    "choices": [
+      {
+        "text": "I blow it out and start crying. The pressure is too much.",
+        "nextScene": null,
+        "effects": [
+          "*set per_gentle +10",
+          "*set rel_jun %+10",
+          "*set stress %-10"
+        ],
+        "resultText": "Jun sits beside you and just holds your hand.\n        \"We're going to make it,\" Jun promises."
+      },
+      {
+        "text": "I laugh and pretend to eat the match. \"Thanks, idiot.\"",
+        "nextScene": null,
+        "effects": [
+          "*set per_bold +10",
+          "*set rel_jun %+15",
+          "*set stress %-15"
+        ],
+        "resultText": "Jun grins.\n        \"Hey! That cost me 500 won.\"\n        You split the Choco Pie.\n        It tastes like cardboard and sugar, but it's the best thing you've ever eaten."
+      },
+      {
+        "text": "\"I don't have time for this. I need to practice.\"",
+        "nextScene": null,
+        "effects": [
+          "*set rel_jun %-10",
+          "*set self_belief %+5"
+        ],
+        "resultText": "Jun's smile fades.\n        \"Right. Sorry.\"\n        Jun leaves the Choco Pie on the floor. You eat it alone, tasting ash."
+      }
+    ]
+  },
+  "month_24_start": {
+    "id": "month_24_start",
+    "text": "Age 16. Month 24.\nTwo years.\nOnly 30 trainees left.\nYou are hurt.\nYour knees ache. You have forgotten what it feels like to be rested.\n\n*gosub jun_secret_scene",
+    "conditionals": [
+      {
+        "branches": []
+      },
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "rel_rival >= 35",
+            "type": "if",
+            "content": "*gosub coco_secret_scene",
+            "goto": "viral_logic_check"
+          },
+          {
+            "condition": "rel_jun >= 55",
+            "type": "if",
+            "content": "",
+            "goto": null
+          }
+        ]
+      }
+    ]
+  },
+  "jun_secret_scene": {
+    "id": "jun_secret_scene",
+    "text": "It is late at night.\nJun is sitting on your bed, holding a small plastic package.\n\"Here,\" Jun says, shoving it into your hand. \"Eat.\"\nIt's a red bean bun. From the convenience store.\n\"I saw you didn't eat lunch,\" Jun mutters, refusing to look at you.\n\"You look like a skeleton. If you pass out on stage, I'm not carrying you.\"\nJun's hands are shaking slightly.\nYou realize Jun isn't worried about the stage. Jun is worried about you.\n\"You're my family now, ${name},\" Jun whispers.\n\"Don't leave me behind, okay?\"\nYou eat the bun. You feel lucky to have met Jun."
+  },
+  "coco_secret_scene": {
+    "id": "coco_secret_scene",
+    "text": "You are tying your shoelaces in the hallway.\n\"Nice shoes,\" a voice draws out. \"Cheap, though.\"\nIt's Coco.\n${r_He} kicks your foot gently, but there's no malice in it today.\nCoco squats down next to you.\n\"Listen,\" ${r_he} says, voice low. \"The judges are looking for eye contact. When you hit the bridge, don't blink. Intimidate them.\"\nYou look at ${r_him}, surprised. \"Why are you helping me?\"\nCoco smirks, but it doesn't reach ${r_his} eyes.\n\"Because beating you when you're weak isn't fun. And... honestly? You're the only one here who actually challenges me.\"\n\"Don't you dare lose to anyone but me,\" Coco says, standing up and walking away."
+  },
+  "viral_logic_check": {
+    "id": "viral_logic_check",
+    "text": "",
+    "conditionals": [
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "stress < 62",
+            "type": "if",
+            "content": "",
+            "goto": "viral_moment"
+          },
+          {
+            "condition": null,
+            "type": "else",
+            "content": "",
+            "goto": "crisis_moment"
+          }
+        ]
+      }
+    ]
+  },
+  "crisis_moment": {
+    "id": "crisis_moment",
+    "text": "Your vision blurs.\nThe room spins.\nYou drop to your knees, gasping for air. Your body has finally hit its limit.\nJun rushes over. \"${name}! Are you okay?\"\nYou try to stand, but your legs are trembling uncontrollably.\nYou know this feeling. It is not just fatigue. It is a shutdown.\nIf you don't rest, you will collapse on stage tomorrow.\nBut if you rest now, you will lose the sharpness you worked so hard for.\nWhat do you do?",
+    "choices": [
+      {
+        "text": "I take the strongest painkillers I have. I will force my body to work.",
+        "nextScene": null,
+        "effects": [
+          "*set physical 5",
+          "*set stress 99",
+          "*set self_belief %+10",
+          "*set ruthless +10",
+          "*set trauma_points + 2"
+        ],
+        "resultText": "You swallow the pills dry.\n        Within minutes, the pain fades into a dull buzz. Your heart is racing dangerously fast, arms heavy.\n        You feel invincible. You feel numb.\n        (Warning: Physical Health is critical. You are running on borrowed time.)"
+      },
+      {
+        "text": "I accept my limits. I drink water and sleep for 12 hours.",
+        "nextScene": "viral_moment",
+        "effects": [
+          "*set stress %-40",
+          "*set physical %+20",
+          "*set dance %-5",
+          "*set vocals %-5",
+          "*set charisma %-5"
+        ],
+        "resultText": "You crawl into bed, ignoring the panic in your chest.\n        When you wake up, your body feels lighter, but your mind feels dull.\n        You lost the \"edge\" you sharpened all night. You feel rusty."
+      }
+    ]
+  },
+  "viral_moment": {
+    "id": "viral_moment",
+    "text": "You are in the locker room, peeling off your sweat-soaked shirt.\nThe air is thick with the smell of damp towels and exhaustion.\nJun bursts in, clutching his phone like it is a grenade.\n\"${name}... do not freak out.\"\n\"What did I do now?\" You blink, too tired to focus.\n\"You didn't do anything. That is the problem. You are trending on N.\"\nHe presses play.\nIt is a grainy video taken from inside a CU convenience store, looking out onto the rainy street in Gangnam at 2:00 AM.\nThe neon sign of a karaoke bar reflects in a puddle next to you.\nBut the focus isn't just on you. It's on the scruffy, one-eared street cat sitting on the curb next to you.\nThe caption reads: [b]Found this trainee having a serious conversation with a Stray Cat at 2AM. My heart hurts.#TitanTrainee #CatWhisperer #KpopFuture[/b]\n\n[i](System: High Visuals. Your face card is the main event.)[/i]\n    In the video, the streetlamp flickers, illuminating your side profile.\n    You look like a painting.\n    You gently wipe a raindrop off the cat's head, and the camera zooms in on your expression.\n    Jun shakes his head. \"Even with a wet cat, you look like you're filming a CF (Commercial).\"\n    The top comment reads: [b]@VisualHunter: \"The way they look at that cat... I wish I was that cat. That nose bridge is art. Total Face Genius.\"[/b]\n\n[i](System: High Vocals. You were serenading the cat.)[/i]\n    In the video, you are humming a soft, complex melody to the cat while opening a can of tuna.\n    The audio is faint, but your pitch is perfect. The cat seems to stop eating just to listen.\n    \"You were singing a ballad to a stray?\" Jun asks. \"And hitting those notes casually?\"\n    The top comment reads: [b]@BalladLover: \"Wait, turn up the volume. That humming... the tone (Eumsaek) is insane. They are serenading a cat with main vocal skills?\"[/b]\n\n[i](System: High Dance/Physical. Your body language tells a story.)[/i]\n    In the video, you crouch down with a fluid, athletic grace that screams \"dancer.\"\n    Even while squatting on the wet pavement, your posture is perfect, your balance absolute. You mimic the cat's movements playfully.\n    \"Only a dancer moves like that,\" Jun notes. \"You made feeding a cat look like choreography.\"\n    The top comment reads: [b]@StageGenius: \"Look at the flexibility in that crouch. That's not a normal person, that's a main dancer. The body control is crazy.\"[/b]\n\n[i](System: High Charisma. You treated the cat like a Senior.)[/i]\n    In the video, you don't just feed the cat.\n    You stand up, bow a full 90 degrees to it, and speak respectfully.\n    [b]\"Please eat well, Sunbae-nim,\"[/b] you say to the cat with a straight face.\n    Jun bursts out laughing.\n    \"Did you just call a stray cat 'Sunbae-nim'? You're insane.\"\n    The internet is losing its mind over your 4D personality.\n    The top comment reads: [b]@VarietyGod: \"Did they just bow to a cat?! LOL. Finally an idol who isn't a robot. I'm stanning the Cat Sunbae and their Hubae!\"[/b]",
+    "conditionals": [
+      {
+        "branches": []
+      },
+      {
+        "branches": []
+      },
+      {
+        "branches": []
+      },
+      {
+        "branches": []
+      },
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "scandal_risk > 25",
+            "type": "if",
+            "content": "*set viral_gain +15000\n*set followers +viral_gain\n*set rel_manager -25\n\n[b]VIEWS: 3.5M (TRENDING #1)[/b]\n    [i]( +${viral_gain} Followers)[/i]\n    The Manager storms in, waving a tablet.\n    \"Do you have no Nunchi?! Dispatch is writing articles about your 'Midnight Rebellion'!\"\n    \"But...\" He pauses, looking at the numbers.\n    \"The public loves a bad boy/girl with a soft heart. You're the #1 search term on Naver right now.\"",
+            "goto": "final_prep_choice"
+          },
+          {
+            "condition": null,
+            "type": "else",
+            "content": "*set viral_gain +5000\n*set followers +viral_gain\n*set rel_manager -5\n\n[b]VIEWS: 900K (TRENDING #3)[/b]\n    [i]( +${viral_gain} Followers)[/i]\n    The Manager sighs, rubbing his temples.\n    \"Aish... at least the comments are positive. 'The Warm-Hearted Trainee'. It's a good image.\"\n    \"But be careful. Dispatch is always watching.\"",
+            "goto": "final_prep_choice"
+          },
+          {
+            "condition": "charisma >= 50",
+            "type": "if",
+            "content": "*set viral_gain +6000",
+            "goto": null
+          },
+          {
+            "condition": "dance >= 50",
+            "type": "if",
+            "content": "*set viral_gain +5000",
+            "goto": null
+          },
+          {
+            "condition": "vocals >= 50",
+            "type": "if",
+            "content": "*set viral_gain +5000",
+            "goto": null
+          },
+          {
+            "condition": "visual >= 50",
+            "type": "if",
+            "content": "*set viral_gain +5000",
+            "goto": null
+          }
+        ]
+      }
+    ]
+  },
+  "final_prep_choice": {
+    "id": "final_prep_choice",
+    "text": "\"I was just paying my respects to the street boss,\" you whisper.\n\"You weren't just feeding a cat,\" Jun corrects you. \"You were being 'Real'. People are starving for that.\"\nHe points at the screen showing your profile.\n[b]CURRENT FOLLOWERS: ${followers}[/b]\n*gosub_scene social_logic update_feed\nThe public is watching.\nAnd the K-Netz have high expectations now.\nYou have one last chance to boost your stats before the Big Announcement.\nThe air in the practice room is thick with the scent of sweat and desperation.\n\n*set stress %+20\n            *set physical -15\n            *set hidden_injury true\n            SNAP.\n            A blinding white pain shoots through your ankle. You have pushed too far.\n            You will have to hide this limp from the cameras if you want to survive.\n\nYou unlock a new level of stamina through sheer willpower.",
+    "conditionals": [
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "stress >= 90",
+            "type": "if",
+            "content": "*set stress %-5\n*set physical %+5\n*set self_belief %-10\n\nYou try to sleep, but the chemicals in your blood are screaming.\n            You wake up barely rested and feeling paranoid.",
+            "goto": "stress_check_finale"
+          },
+          {
+            "condition": null,
+            "type": "else",
+            "content": "*set stress %-20\n*set physical %+15\n*set visual %+5\n*set rel_manager %-5\n*set charisma %+7\n*set the_mask %+10\n*set stress %+5\n\nI need to be at my best for the stage.\n            Your skills don't improve, but you feel human again.\n        You learn how to manipulate the camera's gaze.\n        You aren't stronger, but you are smarter.",
+            "goto": "stress_check_finale"
+          },
+          {
+            "condition": null,
+            "type": "else",
+            "content": "*set dance +10\n*set vocals +10\n*set stress %+10\n*set physical -10",
+            "goto": "stress_check_finale"
+          }
+        ]
+      }
+    ],
+    "choices": [
+      {
+        "text": "I push through the pain. No one debuts by being careful.",
+        "nextScene": null,
+        "effects": []
+      }
+    ]
+  },
+  "stress_check_finale": {
+    "id": "stress_check_finale",
+    "text": "[i](System: Pre-Evaluation Vitals Scan...)[/i]\n\nYour breath comes in shallow, ragged gasps.\n    Your body feels like it's made of cardboard and bad variables.",
+    "conditionals": [
+      {
+        "branches": []
+      },
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "physical <= 10",
+            "type": "if",
+            "content": "",
+            "goto": null
+          },
+          {
+            "condition": "physical < 30",
+            "type": "if",
+            "content": "",
+            "goto": null
+          }
+        ]
+      }
+    ],
+    "choices": [
+      {
+        "text": "\"Is there a 'Load Game' button for my muscles? I think I'm stuck in a low-HP glitch.\"",
+        "nextScene": "check_stress_vitals",
+        "effects": [
+          "*set physical -1",
+          "*set stress %+5"
+        ],
+        "resultText": "You look at your hands, half-expecting to see a health bar blinking red in the corner of your vision.\n                There isn't one. Just the cold reality of lactic acid."
+      },
+      {
+        "text": "\"I'll just wait for the next scene. Characters don't die in the middle of a montage, right?\"",
+        "nextScene": "check_stress_vitals",
+        "effects": [
+          "*set the_mask %+10",
+          "*set self_belief %+5"
+        ],
+        "resultText": "The fourth wall is the only thing keeping you upright.\n                If this is a tragedy, at least you'll get a good edit."
+      }
+    ]
+  },
+  "check_stress_vitals": {
+    "id": "check_stress_vitals",
+    "text": "The buzzing in your ears is louder than the music.\n    You feel like your life is just a series of choices made by someone else.",
+    "conditionals": [
+      {
+        "branches": []
+      },
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "stress >= 95",
+            "type": "if",
+            "content": "",
+            "goto": null
+          },
+          {
+            "condition": "stress > 85",
+            "type": "if",
+            "content": "",
+            "goto": null
+          }
+        ]
+      }
+    ],
+    "choices": [
+      {
+        "text": "I look directly at the security camera and wink. \"I hope the audience likes the 'Mental Breakdown' arc.\"",
+        "nextScene": "eval_2",
+        "effects": [
+          "*set charisma %+10",
+          "*set scandal_risk %+10"
+        ],
+        "resultText": "If you're going to lose your mind, you might as well give the producers some good footage for the trailer."
+      },
+      {
+        "text": "I turn to the 'Voice' in my head. \"If you're going to pick a dialogue option, make it a good one.\"",
+        "nextScene": "eval_2",
+        "effects": [
+          "*set the_mask %+15",
+          "*set stress %-5"
+        ],
+        "resultText": "You've officially reached the point where you're talking to the narrator.\n                Director Park would call this 'Strong Mental'. You call it a Tuesday."
+      }
+    ]
+  },
+  "eval_2": {
+    "id": "eval_2",
+    "text": "Director Park is watching today.\nThe atmosphere is suffocating.\n${rival_name} performs first.\nIt is technically flawless, but ${r_he} is chewing gum.\n\"Respect is basic,\" Park mutters, marking ${r_him} down.\nNow, it is your turn.\n*set total_skill (vocals + dance)\n*set total_skill (total_skill + visual)\n*set total_skill (total_skill + charisma)\n\nYou step forward, but your vision blurs.\n        You simply faint before the music even starts.\n        \"Pathetic,\" Park mutters. \"Weak Mental.\"\n\nA sharp pain shoots up your leg.\n\nYou stumble.\n        Park sighs. \"Injury? Unprofessional.\"",
+    "conditionals": [
+      {
+        "branches": []
+      },
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "the_mask >= 65",
+            "type": "if",
+            "content": "*set passed_eval true\n*set masked_performance true\n*set dissociated_pass true\n*set charisma %+20\n\nYour vision goes black.\n        The room spins. Your body screams at you to collapse.\n        But you don't.\n        Your Mask is so hardened it acts like a second skeleton.\n        You dissociate completely. You are not ${name} anymore; you are a product.\n        Your body moves on autopilot, hitting every angle with terrifying precision while your mind floats in a void.\n        Director Park looks at you, slightly unsettled by your empty eyes.\n        \"Your Mental is strong,\" he says slowly.\n        \"Almost too strong. Good.\"",
+            "goto": "eval_2_result"
+          }
+        ]
+      },
+      {
+        "branches": []
+      },
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "the_mask >= 40",
+            "type": "if",
+            "content": "*set passed_eval true\n*set masked_performance true\n*set charisma %+10\n*set physical -10\n\nBut your face does not twitch.\n        Park sees the sweat, but he cannot find the flaw.\n        \"Professional,\" he notes. \"You have the right Mental.\"",
+            "goto": "eval_2_result"
+          },
+          {
+            "condition": "stress >= 90",
+            "type": "elseif",
+            "content": "*set passed_eval true\n*set charisma %+15\n\nThe painkillers mask the pain, making your movements sharp but manic.\n        \"Your eyes look dangerous,\" he notes. \"Good Kki.\"",
+            "goto": "eval_2_result"
+          }
+        ]
+      },
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "(dance >= 45) or (vocals >= 45)) or ((charisma >= 45) or (visual >= 45)",
+            "type": "if",
+            "content": "*set passed_eval true\n\nYou power through.\n    Your eyes are fierce. Director Park nods slowly. \"Good energy.\"",
+            "goto": "eval_2_result"
+          },
+          {
+            "condition": "total_skill >= 150",
+            "type": "elseif",
+            "content": "*set passed_eval true\n*set self_belief %+15\n*set ruthless +10\n\nYou don't have a \"Main\" skill. You don't have a specialty.\n    But as you move from dance to vocals to acting, Director Park stops writing.\n    He looks at your file. Then he looks at you.\n    You didn't go to the convenience store parties. You didn't bond with your roommates.\n    You spent every single hour of the last two years in the studio.\n    \"You are a machine,\" Park whispers, half-impressed, half-disturbed.\n    \"No weakness. No holes. You sacrificed everything to be efficient.\"\n    He circles your name in red ink.\n    \"We can use a weapon like you. You are the ultimate [b]All-Rounder[/b].\"",
+            "goto": "eval_2_result"
+          },
+          {
+            "condition": null,
+            "type": "else",
+            "content": "*set self_belief %-5\n*set rel_manager -10\n*set passed_eval false\n\nYou perform well, but it feels average.\n    You lack a \"Killing Part\" or the insane dedication of an All-Rounder.\n    Park doesn't even look up from his notes.",
+            "goto": "eval_2_result"
+          },
+          {
+            "condition": null,
+            "type": "else",
+            "content": "*set passed_eval false",
+            "goto": "eval_2_result"
+          },
+          {
+            "condition": "hidden_injury",
+            "type": "if",
+            "content": "",
+            "goto": null
+          },
+          {
+            "condition": null,
+            "type": "else",
+            "content": "*set passed_eval false",
+            "goto": "eval_2_result"
+          },
+          {
+            "condition": "stress >= 93) and (hidden_injury = false",
+            "type": "if",
+            "content": "",
+            "goto": null
+          }
+        ]
+      }
+    ]
+  },
+  "eval_2_result": {
+    "id": "eval_2_result",
+    "text": "The music fades. You bow, panting.\nThank you. Next.\nThe next day.\nOne of the trainees, Alex, is gone.\n${rival_name}, however, is still here. Of course."
+  },
+  "post_eval_check": {
+    "id": "post_eval_check",
+    "text": "[i](System: Post-Evaluation Status...)[/i]\n\nYou are practically vibrating with exhaustion.\n    Your vision is flickering like a bad internet connection.",
+    "conditionals": [
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "physical < 15",
+            "type": "if",
+            "content": "",
+            "goto": null
+          }
+        ]
+      }
+    ],
+    "choices": [
+      {
+        "text": "\"I bet my 'Visual' stat is carrying me right now. God knows my 'Physical' is at zero.\"",
+        "nextScene": "check_stress_post_eval",
+        "effects": [
+          "*set visual %+5",
+          "*set self_belief %-5"
+        ],
+        "resultText": "You lean against the wall, wondering if you're just a collection of numbers on a spreadsheet.\n            Director Park's spreadsheet, specifically."
+      },
+      {
+        "text": "I ask Jun if he thinks we're in a survival show or a horror movie.",
+        "nextScene": "check_stress_post_eval",
+        "effects": [
+          "*set rel_jun %+10",
+          "*set stress %-5"
+        ],
+        "resultText": "\"Same thing,\" Jun whispers back, his eyes dead.\n            \"At least in horror movies, the ghosts don't make you practice choreography for 18 hours.\""
+      }
+    ]
+  },
+  "check_stress_post_eval": {
+    "id": "check_stress_post_eval",
+    "text": "You're replaying every micro-mistake in your head on a loop.",
+    "conditionals": [
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "stress > 90",
+            "type": "if",
+            "content": "",
+            "goto": null
+          }
+        ]
+      }
+    ],
+    "choices": [
+      {
+        "text": "\"Narrator, if you can hear me... just skip to the part where I'm famous.\"",
+        "nextScene": "the_announcement",
+        "effects": [
+          "*set self_belief %+5",
+          "*set stress %+10"
+        ],
+        "resultText": "The silence of the hallway is your only answer.\n            The 'Skip' button is broken.\n            You have to live through every agonizing second of the 'Wait' mechanic."
+      },
+      {
+        "text": "I start practicing my \"Shocked Victory Face\" just in case.",
+        "nextScene": "the_announcement",
+        "effects": [
+          "*set the_mask %+15",
+          "*set charisma %+5"
+        ],
+        "resultText": "\"Who, me? I'm so surprised!\"\n            You look at your reflection in a locker.\n            You look like a professional liar.\n            In this building, that's the highest form of praise."
+      }
+    ]
+  },
+  "the_announcement": {
+    "id": "the_announcement",
+    "text": "The Summoning.\n8:00 AM. Main Hall.\nDirector Park walks in with a microphone. Behind him, a screen lights up: [b]PROJECT: SUPERNOVA[/b].\n\"We have trimmed the fat,\" Park says coldly. \"Now, only the best remain.\"\nStarting next week, your lives will be broadcast 24/7. You will compete for 7 spots in the final group.\nHe begins to read the names of the survivors.\n\"Coco... Kang... Haneul... Jiwon...\"\nHe lists 29 names. The room is thinning out.\nJun is standing next to you. ${j_He} isn't gripping your hand anymore. ${j_He} is standing straight, hands at ${j_his} sides, staring at the floor.\n${j_He} is trembling so slightly you almost can't see it.\nDirector Park stops reading. He lowers the paper.\n\"That is all,\" Park says. \"Those whose names were not called... thank you for your hard work. Please clear your lockers by noon.\"\nThe room is deadly silent.\nJun doesn't scream. In a terrifying display of discipline, Jun turns to the Director and bows a full 90 degrees.\n\"Thank you for the opportunity,\" Jun whispers.\nIt is heartbreakingly polite.\nJun turns around, pale as a ghost, and begins to walk toward the exit with the other rejected trainees.\n\"Wait,\" Park says. \"I missed one.\"\nJun stops. Hope flashes in ${j_his} eyes.\nPark doesn't even look at Jun. He looks at the remaining candidates.\n\"The final spot...\"\n\n\"${surname} ${name}.\"\nThe hope vanishes from Jun's face instantly. The mask comes back up.\n${j_He} gives you a small, broken smile and walks toward the door. Alone.\nDirector Park waits for you to step forward. \"Join the line, ${name}.\"\n\nYou open your mouth to speak. Your heart screams at you to move.\n            [i]\"No,\"[/i] you want to say. [i]\"This is wrong.\"[/i]\n            But the word dies in your throat.\n            Years of conditioning, the fear of Director Park, the desperate need to succeed it all freezes you in place.\n            Your legs feel heavy, like they are filled with lead. You watch Jun's hand slip off the door handle.\n            You failed ${j_him}. You simply aren't brave enough to throw it all away.\n            You look down at your feet, defeated, and step back into line.",
+    "conditionals": [
+      {
+        "branches": []
+      },
+      {
+        "branches": []
+      },
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "rel_manager < 33",
+            "type": "if",
+            "content": "",
+            "goto": "outcome_manager_cut"
+          },
+          {
+            "condition": "((vocals <= 15) or (charisma <= 15)) or (dance <= 15)",
+            "type": "if",
+            "content": "",
+            "goto": "outcome_not_allrounder"
+          },
+          {
+            "condition": "passed_eval = false",
+            "type": "if",
+            "content": "",
+            "goto": "outcome_rejected"
+          },
+          {
+            "condition": null,
+            "type": "else",
+            "content": "*set rebellion +20\n*set rel_jun %+50\n\nYou don't step forward. You step back.\n            \"Where are you going?\" Park asks, his voice mild. \"If you walk out that door, you are done.\"\n            You don't answer. You turn around and walk toward the exit, matching Jun's pace.\n            You grab Jun's hand just as ${j_he} reaches the handle.\n            \"Let's go, ${jun_nickname},\" you say quietly.",
+            "goto": "end_chapter_2_rebel"
+          }
+        ]
+      }
+    ],
+    "choices": [
+      {
+        "text": "I stand still, watching Jun leave. I worked too hard to throw this away.",
+        "nextScene": "outcome_accepted",
+        "effects": [],
+        "resultText": "You feel like throwing up.\n        But you take a step forward. You bow to the Director.\n        \"Thank you, sir,\" you say.\n        You don't look back at the door. You can't."
+      },
+      {
+        "text": "\"No.\" I turn my back on the Director and follow Jun. (Requires Rebellion 65+)",
+        "nextScene": null,
+        "effects": []
+      }
+    ]
+  },
+  "outcome_accepted": {
+    "id": "outcome_accepted",
+    "text": "Director Park nods. \"Welcome to Project: Supernova.\""
+  },
+  "outcome_not_allrounder": {
+    "id": "outcome_not_allrounder",
+    "text": "\"Rio.\"\nRio gasps, stepping forward.\nYour name was not called. The room spins.\n\"You are unbalanced,\" Park says, looking at you briefly. \"A true Idol must be an all-rounder.\"\n*set passed_eval false\n*set cut_reason \"unbalanced\""
+  },
+  "outcome_manager_cut": {
+    "id": "outcome_manager_cut",
+    "text": "\"Rio.\"\nRio gasps, stepping forward.\nYour name was not called. The room spins.\n\"Talent is common,\" Park says, looking at you. \"But I cannot debut a trainee who lacks respect for the hierarchy.\"\n*set passed_eval false\n*set cut_reason \"attitude\""
+  },
+  "outcome_rejected": {
+    "id": "outcome_rejected",
+    "text": "\"Rio.\"\nRio gasps, stepping forward.\nYour name was not called. The room spins.",
+    "conditionals": [
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "stress >= 93) and (the_mask < 70",
+            "type": "if",
+            "content": "*set cut_reason \"medical_collapse\"",
+            "goto": "rescue_check"
+          },
+          {
+            "condition": "hidden_injury) and (masked_performance = false",
+            "type": "elseif",
+            "content": "*set cut_reason \"medical_injury\"",
+            "goto": "rescue_check"
+          },
+          {
+            "condition": null,
+            "type": "else",
+            "content": "*set cut_reason \"rejected\"",
+            "goto": "rescue_check"
+          }
+        ]
+      }
+    ]
+  },
+  "rescue_check": {
+    "id": "rescue_check",
+    "text": "",
+    "conditionals": [
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "dissociated_pass",
+            "type": "if",
+            "content": "",
+            "goto": "end_chapter_2_villain"
+          },
+          {
+            "condition": "cut_reason = \"medical_collapse\") or (cut_reason = \"medical_injury\"",
+            "type": "elseif",
+            "content": "",
+            "goto": "end_chapter_2_medical_rescue"
+          },
+          {
+            "condition": null,
+            "type": "else",
+            "content": "",
+            "goto": "end_chapter_2_villain"
+          }
+        ]
+      }
+    ]
+  },
+  "end_chapter_2_medical_rescue": {
+    "id": "end_chapter_2_medical_rescue",
+    "text": "You are standing in the alley behind the building.\nShivering. Broken. Alone.\nThe rain masks your tears. You gave everything, and they tossed you out like garbage.\nSuddenly, a Rolls Royce pulls to the curb. The window rolls down and the most beautiful woman you've ever seen has just handed you a towel.\nIt is the Show Producer (PD). He looks annoyed.\n\"Get in,\" he mutters. \"Before the paparazzi see you.\"\nHe slides the door open.\nSitting inside is Noa.\nShe isn't looking at her phone. She is looking at you.\nAnd she isn't looking at you like a judge. Her eyes are warm, filled with a deep, painful recognition.\n\"Here,\" Noa says softly.\nShe reaches out and hands you another dry towel.\nHer hands are warm, contrasting sharply with the cold rain.\n\"Director Park sees a broken puppet, but you remind me of someone,\" Noa says.\n\"I was watching the feed. I saw you get up when anyone else would have stayed down.\"\nShe leans forward, and for a second, the Perfect Idol mask slips. You see the survivor underneath.\n\"I know that feeling,\" she whispers. \"It's the same I had when they told me to quit.\"\nThe PD sighs.\n\"Noa, are you sure? The kid is injured.\"\n\"I'm sure,\" Noa says firmly, not breaking eye contact with you.\n\"I'm using my Host Veto. ${name} ${surname} is coming to the Villa.\"\nShe smiles not her media smile, but a small, sad, genuine one.\n\"The system is cold, ${name}. You'll need someone to help you keep the fire burning. Come with me.\"\n*set entry_method \"medical_wildcard\"\n*set rel_noa +20\n*set scandal_risk %+ (10 * scandal_mult)",
+    "choices": [
+      {
+        "text": "I take the towel. I trust her warmth.",
+        "nextScene": "end_chapter_2_final",
+        "effects": [
+          "*set self_belief %+10",
+          "*set per_gentle +5"
+        ],
+        "resultText": "\"Thank you, Sunbae-nim,\" you whisper.\n        Noa moves over to make space for you. As you pass her by you notice the small scar on her right hand.\n        \"Call me Unnie/Noona when the cameras are off,\" she says kindly.\n        You climb in. You are safe."
+      },
+      {
+        "text": "I get in, but I keep my guard up.",
+        "nextScene": "end_chapter_2_final",
+        "effects": [
+          "*set ruthless +5"
+        ],
+        "resultText": "You nod, wiping the rain from your face.\n        She saved you, but you know this industry. Nothing is free."
+      }
+    ]
+  },
+  "end_chapter_2_villain": {
+    "id": "end_chapter_2_villain",
+    "text": "You drag your suitcase into the rainy street outside Titan. It is over.\nSuddenly, a black van screeches to a halt, blocking your path.\nThe window rolls down.\nIt is the new shows producer. He is holding an Iced Americano and looking at you with delight.",
+    "conditionals": [
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "dissociated_pass",
+            "type": "if",
+            "content": "*set entry_method \"villain\"\n\n\"Stop! Don't move!\" he yells, framing you with his hands like a camera.\n    \"That look in your eyes... so empty. So dead. It's giving 'Tim Burton meets K-Pop'. I am obsessed.\"\n    He takes a sip of his coffee through a neon straw.\n    \"Park hates it. He wants robots. But me? I'm from LA, baby. We love a good breakdown.\"\n    \"Get in. You're my new Villain.\"",
+            "goto": "end_chapter_2_final"
+          },
+          {
+            "condition": null,
+            "type": "else",
+            "content": "*set entry_method \"villain\"\n\n\"Hey! The Angry One!\" he calls out.\n    \"I saw you in there. You looked like you wanted to set the building on fire.\"\n    He smirks.\n    \"Do it. But do it on my show.\"\n    \"Korea is too polite. I need someone to flip a table. Get in, darling.\"",
+            "goto": "end_chapter_2_final"
+          }
+        ]
+      }
+    ]
+  },
+  "end_chapter_2_rebel": {
+    "id": "end_chapter_2_rebel",
+    "text": "You and ${jun_nickname} storm out into the rainy street.\nThe heavy doors of Titan Entertainment slam shut behind you with a final, echoing thud.\nThe music from inside is cut off instantly.\nAll that's left is the sound of the rain hitting the asphalt and ${jun_nickname}'s ragged breathing.\n${jun_nickname} stumbles, dropping ${j_his} bag onto the wet pavement.\n$!{j_he} leans against the brick wall, sliding down until ${j_he}'s sitting in a puddle.\n\"We're dead,\" $!{j_he} gasps, burying ${j_his} face in ${j_his} hands. \"My parents... the contract penalty... we're actually dead.\"\nYou stand over ${j_him}, soaking wet, adrenaline still pumping through your veins.\nYou just threw away your dream. But looking at ${j_him}, you don't feel regret.\nIn fact, a laugh bubbles up in your chest. It starts low, then builds into something hysterical and liberating.\n${jun_nickname} looks up, terrified. \"Why are you laughing? We just ruined our lives!\"\n\"We didn't ruin them,\" you gasp, wiping rain from your eyes. \"We saved them. Did you see Park's face? He looked like he was about to blow a gasket.\"\n${jun_nickname} blinks, and then, a small, shaky smile breaks through ${j_his} tears.\n\"He did turn kinda purple,\" ${j_he} admits.\n\"Exactly.\" You grab ${j_his} shoulders, forcing ${j_him} to look at you in the pouring rain.\n\"Listen to me, ${jun_nickname} ah. You smart. You loyal.\"\n${jun_nickname} stares at you, confused.\n\"YOU THE BEST,\" you shout over the thunder, channeling your inner DJ Khaled. \"And I love you! That's why I walked out. We go together, remember?\"\n${jun_nickname} stares at you, ${j_his} eyes wide. $!{j_he} looks like ${j_he} doesn't know whether to hug you or call a doctor.\n\"You're... you're quoting memes right now?\" $!{j_he} whispers, voice trembling. \"We just got fired and you're quoting DJ Khaled?\"\n\"Another one,\" you simply say, pulling ${j_him} to ${j_his} feet. \"You're stuck with me now, Crybaby. No refunds.\"\n${jun_nickname} takes a deep breath, steadying ${j_him}self.\n$!{j_he} looks at you, and for the first time in months, the fear is gone from ${j_his} eyes.\n\"Okay,\" $!{j_he} says, gripping your hand. \"No refunds.\"\nSuddenly, a slow clap echoes from the street.\nA black van has pulled up silently when you didn't notice.\nThe producer is leaning out, still clapping. He has a silk hermes scarf with flamboyant colors.\n\"Bravo! Encore!\" he shouts over the rain.\n\"Walking out on Director Park? Screaming in the rain? Honey, I worked in Hollywood for ten years and I haven't seen an exit that dramatic.\"\nHe unlocks the doors.\n\"I can't let chemistry like that walk away. The ratings would never forgive me.\"\n\"Get in, you beautiful disasters. You're messy, and I'm going to make you stars.\"\n${jun_nickname} looks at you, confused. \"Who is that?\"\n\"Our new ride,\" you say, grabbing ${j_his} hand. \"Come on.\"\n*set entry_method \"rebel\"\n*set rel_jun %+50\n*set scandal_risk %+ (20 * scandal_mult)"
+  },
+  "end_chapter_2_safe": {
+    "id": "end_chapter_2_safe",
+    "text": "Pack your bags. You move into the Villa tomorrow.\n*set entry_method \"merit\""
+  },
+  "end_chapter_2_final": {
+    "id": "end_chapter_2_final",
+    "text": "The vehicle speeds through the rain, leaving the Titan building behind.",
+    "conditionals": [
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "entry_method = \"medical_wildcard\"",
+            "type": "if",
+            "content": "Noa glances at you from the seat beside you.\n    \"Rest now,\" she says softly, checking her phone.\n    \"We're almost at the Villa.\"\n    \"The cameras start rolling the moment we step off this van. Be ready.\"\n    The PD looks at her in the rearview mirror. \"You sure about this, Noa? Bringing a wounded bird into a snake pit?\"\n    Noa's eyes harden. \"Just drive.\"",
+            "goto": "gates_open"
+          },
+          {
+            "condition": "entry_method = \"merit\"",
+            "type": "elseif",
+            "content": "You sit in the transport bus with the other survivors.\n    The mood is tense.\n    The screen at the front flickers on.\n    The PD appears, wearing a face mask and a silk robe.\n    \"Welcome to the show,\" his voice crackles over the speakers.\n    \"Noa is waiting for you at the gates. Don't disappoint her.\"",
+            "goto": "gates_open"
+          },
+          {
+            "condition": "entry_method = \"villain\"",
+            "type": "elseif",
+            "content": "\"You better be ready. The Host isn't known for playing favorites.\"",
+            "goto": "gates_open"
+          },
+          {
+            "condition": "entry_method = \"rebel\"",
+            "type": "elseif",
+            "content": "\"Is Noa ready? Good. I know she can turn these lemons into lemonade...\"",
+            "goto": "gates_open"
+          },
+          {
+            "condition": null,
+            "type": "else",
+            "content": "The PD drives in silence.\n    \"Welcome to the show.\"",
+            "goto": "gates_open"
+          }
+        ]
+      }
+    ]
+  },
+  "gates_open": {
+    "id": "gates_open",
+    "text": "The gates of a massive, secluded estate swing open.\nThe Villa.\n\"Welcome to Project: Supernova,\" the PD says.\n\"Try not to die.\"\n*gosub_scene mechanics safe_stat_clamp",
+    "conditionals": [
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "entry_method = \"rebel\"",
+            "type": "if",
+            "content": "[b]CHAPTER 3: REBEL PATH - COMING SOON[/b]\n    You've chosen the path of the Outcasts. Currently, the Rebel route is being carefully crafted to ensure the bond between you and Jun gets the depth it deserves.\n    In the meantime, use the new [b]Save System[/b] to explore the other connection and get traumatized by RO'S /xp",
+            "goto": null
+          },
+          {
+            "condition": null,
+            "type": "else",
+            "content": "*goto_scene chapter3_solo",
+            "goto": null
+          }
+        ]
+      }
+    ]
+  }
+}

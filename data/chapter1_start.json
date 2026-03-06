@@ -1,0 +1,637 @@
+{
+  "chapter1_start": {
+    "id": "chapter1_start",
+    "text": "The heavy doors close behind you. The sound of the waiting room cuts off instantly.\nIt is dead silent inside."
+  },
+  "gender_select": {
+    "id": "gender_select",
+    "text": "You stand in the restroom of the Titan skyscraper a few minutes before your name is called.\nYou splash freezing cold water on your face and look in the mirror.\nWho is staring back?",
+    "choices": [
+      {
+        "text": "I am a young woman.",
+        "nextScene": "origin_select",
+        "effects": [
+          "*set gender \"female\"",
+          "*set he_she \"she\"",
+          "*set him_her \"her\"",
+          "*set his_her \"her\"",
+          "*set boy_girl \"girl\"",
+          "*set man_woman \"woman\"",
+          "*set son_daughter \"daughter\"",
+          "*set honorific_older_male \"Oppa\"",
+          "*set stress %+12"
+        ],
+        "resultText": "(She/Her)\n        You adjust your hair.\n        You know what this industry does to girls. They want dolls. They want perfection."
+      },
+      {
+        "text": "I am a young man.",
+        "nextScene": "origin_select",
+        "effects": [
+          "*set gender \"male\"",
+          "*set he_she \"he\"",
+          "*set him_her \"him\"",
+          "*set his_her \"his\"",
+          "*set boy_girl \"boy\"",
+          "*set man_woman \"man\"",
+          "*set son_daughter \"son\"",
+          "*set honorific_older_male \"Hyung\""
+        ],
+        "resultText": "(He/Him)\n        You square your shoulders.\n        You know the competition for boy groups is brutal. They want soldiers."
+      },
+      {
+        "text": "I am non-binary / gender-fluid.",
+        "nextScene": "origin_select",
+        "effects": [
+          "*set gender \"nb\"",
+          "*set scandal_mult 2",
+          "*set he_she \"they\"",
+          "*set him_her \"them\"",
+          "*set his_her \"their\"",
+          "*set boy_girl \"kid\"",
+          "*set man_woman \"person\"",
+          "*set son_daughter \"child\"",
+          "*set honorific_older_male \"Sunbae\"",
+          "*set rebellion +10",
+          "*set scandal_risk %+ (5 * scandal_mult)",
+          "*set charisma %+5"
+        ],
+        "resultText": "(They/Them)\n        You look at your reflection.\n        This industry relies on strict boxes. You don't fit in either.\n        It will be harder for you, but you will force them to make a new category just for you."
+      }
+    ]
+  },
+  "origin_select": {
+    "id": "origin_select",
+    "text": "Who are you, really?",
+    "choices": [
+      {
+        "text": "I am a local Korean. Born and raised here.",
+        "nextScene": "appearance_select",
+        "effects": [
+          "*set origin \"Local\"",
+          "*set skin_tone \"pale\"",
+          "*set visual %+5"
+        ],
+        "resultText": "You know the culture, the language, and the pressure perfectly."
+      },
+      {
+        "text": "I am a 'Gyopo' (Global). Korean blood, but born overseas.",
+        "nextScene": "appearance_select",
+        "effects": [
+          "*set origin \"Global\"",
+          "*set skin_tone \"tan\"",
+          "*set charisma %+5"
+        ],
+        "resultText": "You speak Korean with a slight accent.\n        You left your whole life behind to come here."
+      },
+      {
+        "text": "I am Mixed Race / Non-Korean.",
+        "nextScene": "appearance_select",
+        "effects": [
+          "*set origin \"Mixed\"",
+          "*set skin_tone \"dark\"",
+          "*set scandal_risk %+ (10 * scandal_mult)",
+          "*set charisma %+10",
+          "*set rebellion +5"
+        ],
+        "resultText": "I look different.\n        You stand out immediately.\n        The conservative public might not accept you easily, but your look is unforgettable."
+      }
+    ]
+  },
+  "appearance_select": {
+    "id": "appearance_select",
+    "text": "And how have you styled yourself for this life-changing day?",
+    "choices": [
+      {
+        "text": "Natural, silky black hair. Kept neat.",
+        "nextScene": "eyes_select",
+        "effects": [
+          "*set hair_color \"black\"",
+          "*set hair_style \"natural\"",
+          "*set rebellion -5",
+          "*set rel_manager %+5"
+        ],
+        "resultText": "Safe.\n        Professional. Obedient."
+      },
+      {
+        "text": "I bleached it platinum blonde myself in the sink.",
+        "nextScene": "eyes_select",
+        "effects": [
+          "*set hair_color \"blonde\"",
+          "*set hair_style \"dyed\"",
+          "*set rebellion +10",
+          "*set scandal_risk %+ (5 * scandal_mult)",
+          "*set rel_manager %-7"
+        ],
+        "resultText": "It looks a bit damaged, but it screams \"Look at me.\""
+      },
+      {
+        "text": "I dyed it unnatural color. A scream for attention.",
+        "nextScene": "eyes_select",
+        "effects": [
+          "*set hair_color \"colored\"",
+          "*set hair_style \"punk\"",
+          "*set rebellion +20",
+          "*set scandal_risk %+ (10 * scandal_mult)",
+          "*set rel_manager %-15"
+        ],
+        "resultText": "It's messy.\n        It's punk. It's dangerous."
+      }
+    ]
+  },
+  "eyes_select": {
+    "id": "eyes_select",
+    "text": "And your eyes?",
+    "choices": [
+      {
+        "text": "Dark brown, warm and full of dreams.",
+        "nextScene": "waiting_room",
+        "effects": [
+          "*set eye_color \"dark brown\""
+        ]
+      },
+      {
+        "text": "Onyx black, sharp and unreadable.",
+        "nextScene": "waiting_room",
+        "effects": [
+          "*set eye_color \"black\"",
+          "*set the_mask %+5"
+        ]
+      },
+      {
+        "text": "Light amber, almost like honey.",
+        "nextScene": "waiting_room",
+        "effects": [
+          "*set eye_color \"amber\"",
+          "*set visual %+5"
+        ]
+      },
+      {
+        "text": "Heterochromia (One brown, one blue/green).",
+        "nextScene": "waiting_room",
+        "effects": [
+          "*set eye_color \"heterochromia\"",
+          "*set heterochromia true",
+          "*set visual %+10",
+          "*set scandal_risk %+ (5 * scandal_mult)",
+          "*set charisma %+5"
+        ]
+      }
+    ]
+  },
+  "waiting_room": {
+    "id": "waiting_room",
+    "text": "The Holding Area\nYou sit on the floor.\nIt is packed. The air smells of cheap hairspray and fear.\nAcross the room, you see Number 001 (Coco).\n\nShe looks perfect. Her hair is sleek, her skin glowing.\n    She knows she is the main character.\n\nHe looks perfect.\n    His posture is relaxed, his jawline sharp. He knows he is the main character.\n\nThey look perfect. Their style is distinct, breaking every rule.\n    They know they are the main character.\n\nYou scan the room.\n    Most of these kids look like they are about to throw up. You straighten your back. You aren't like them.\n    You belong here.\n\nYou see a girl crying in the corner while her mother yells at her.\n    You wish you could go over and comfort her, but you are frozen in your spot.\n    How do you spend the agonizing wait?",
+    "conditionals": [
+      {
+        "branches": []
+      },
+      {
+        "branches": []
+      },
+      {
+        "branches": []
+      },
+      {
+        "branches": []
+      },
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "per_gentle >= 55",
+            "type": "if",
+            "content": "",
+            "goto": null
+          },
+          {
+            "condition": "per_bold >= 55",
+            "type": "if",
+            "content": "",
+            "goto": null
+          },
+          {
+            "condition": "gender = \"nb\"",
+            "type": "if",
+            "content": "",
+            "goto": null
+          },
+          {
+            "condition": "gender = \"male\"",
+            "type": "if",
+            "content": "",
+            "goto": null
+          },
+          {
+            "condition": "gender = \"female\"",
+            "type": "if",
+            "content": "",
+            "goto": null
+          }
+        ]
+      }
+    ],
+    "choices": [
+      {
+        "text": "I study Coco.",
+        "nextScene": "audition_start",
+        "effects": [
+          "*set self_belief %-5",
+          "*set visual %+5",
+          "*set per_bold +5"
+        ],
+        "resultText": "I need to know my competition.\n        You realize: That is the standard I have to beat.\n        :/"
+      },
+      {
+        "text": "I put in my headphones and analyze the vocal technique of the song.",
+        "nextScene": "audition_start",
+        "effects": [
+          "*set vocals %+5",
+          "*set stress %-5",
+          "*set self_belief %+5",
+          "*set per_gentle +5"
+        ],
+        "resultText": "You close your eyes.\n        You strip away the beat and listen only to the breathing and the pitch.\n        You care about the music, not the drama."
+      },
+      {
+        "text": "I eavesdrop on the other kids to gather intel.",
+        "nextScene": "audition_start",
+        "effects": [
+          "*set the_mask %+5",
+          "*set per_bold -5"
+        ],
+        "resultText": "Knowledge is power."
+      }
+    ]
+  },
+  "audition_start": {
+    "id": "audition_start",
+    "text": "Finally, they call your number.\nYou walk in. Director Park is waiting."
+  },
+  "name_input": {
+    "id": "name_input",
+    "text": "\"Surname first,\" he mutters, his fingers hovering over the keyboard. \"Then your given name.\"\n\"So,\" he looks up, reading the screen. \"${surname} ${name}?\"\n*set full_name (\"\"&surname) & (\" \"&name)",
+    "choices": [
+      {
+        "text": "\"Yes, that's me.\"",
+        "nextScene": "name_confirmed",
+        "effects": []
+      },
+      {
+        "text": "\"No, let me correct that.\"",
+        "nextScene": "name_input",
+        "effects": []
+      }
+    ]
+  },
+  "name_confirmed": {
+    "id": "name_confirmed",
+    "text": "*set stats_unlocked true\nDirector Park hits 'Enter'.\nHe finally looks at you, scanning your appearance.\n\nHe pauses. \"The eyes... distinct. But risky.\"\n\nHe frowns. \"You'll dye that hair back to black if you pass.\"\n\n\"Unique look. It will either be your weapon or your downfall.\"\n\"Show me your kki (Talent),\" Park says.\n\n\"Your support is decent,\" he nods.\n            *set rel_manager %+5\n            *set self_belief %+5\n\n\"You're flat. Stop.\"\n\n\"You're rushing the beat. Next.\"",
+    "conditionals": [
+      {
+        "branches": []
+      },
+      {
+        "branches": []
+      },
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "origin = \"Mixed\"",
+            "type": "if",
+            "content": "",
+            "goto": null
+          },
+          {
+            "condition": "hair_style = \"punk\"",
+            "type": "if",
+            "content": "",
+            "goto": null
+          },
+          {
+            "condition": "heterochromia",
+            "type": "if",
+            "content": "",
+            "goto": null
+          }
+        ]
+      },
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "dance >= 22",
+            "type": "if",
+            "content": "*set rel_manager %+5\n*set self_belief %+5\n\n\"Clean lines. Good stamina.\"",
+            "goto": "rooftop_scene"
+          }
+        ]
+      },
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "charisma >= 22) or (visual >= 22",
+            "type": "if",
+            "content": "*set rel_manager %+10\n*set self_belief %+10\n\nA slow smirk spreads across his face.\n            \"You have guts.\"",
+            "goto": "rooftop_scene"
+          },
+          {
+            "condition": null,
+            "type": "else",
+            "content": "*set self_belief %-10\n\n\"Is that it? You're just standing there? Next.\"",
+            "goto": "rooftop_scene"
+          },
+          {
+            "condition": null,
+            "type": "else",
+            "content": "*set self_belief %-10",
+            "goto": "rooftop_scene"
+          },
+          {
+            "condition": null,
+            "type": "else",
+            "content": "*set self_belief %-10",
+            "goto": "rooftop_scene"
+          }
+        ]
+      }
+    ],
+    "choices": [
+      {
+        "text": "I sing with deep emotion (Han).",
+        "nextScene": null,
+        "effects": []
+      }
+    ]
+  },
+  "rooftop_scene": {
+    "id": "rooftop_scene",
+    "text": "You exit to the rooftop to get some much needed air.\nA light skinned teen with wolf cut black hair is there you realize he's a famous actor.\n\"You're not supposed to be up here,\" he says while holding his vape pen.\n\nYou don't shrink away. You stand tall and meet his gaze.\n\nHis voice breaks your heart a little.\n    Under the arrogance, he sounds so incredibly depleted.",
+    "conditionals": [
+      {
+        "branches": []
+      },
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "per_gentle >= 55",
+            "type": "if",
+            "content": "",
+            "goto": null
+          },
+          {
+            "condition": "per_bold >= 55",
+            "type": "if",
+            "content": "",
+            "goto": null
+          }
+        ]
+      }
+    ],
+    "choices": [
+      {
+        "text": "\"I know. But I couldn't breathe downstairs.\"",
+        "nextScene": "minjae_warning",
+        "effects": [
+          "*set rel_minjae %+5",
+          "*set per_gentle +5"
+        ],
+        "resultText": "\"Yeah. The air in this building is poisoned.\""
+      },
+      {
+        "text": "\"You're Han Min-jae ${honorific_older_male}!\"",
+        "nextScene": "minjae_warning",
+        "effects": [
+          "*set rel_minjae %-5"
+        ],
+        "resultText": "He flinches.\n        \"Don't call me ${honorific_older_male}. That guy on TV is just a product.\""
+      }
+    ]
+  },
+  "minjae_warning": {
+    "id": "minjae_warning",
+    "text": "He takes a hit from the vape. \"You passed, didn't you? I can see the hope in your face. It is disgusting.\"\nHe steps closer. \"This place will take everything. Your name. Your face. Even the friends you will meet here. The system is designed to make you eat each other.\"\n\"Run away,\" he warns. \"Before you turn into me.\"",
+    "conditionals": [
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "per_gentle >= 55",
+            "type": "if",
+            "content": "You feel a pang of sadness for him.\n    He looks so lonely.\n    \"Are you okay, Sunbae?\" you ask softly.\n    Even though you only get a tired look in return, you still want to hug him.",
+            "goto": "minjae_choice_label"
+          },
+          {
+            "condition": null,
+            "type": "else",
+            "content": "You scoff internally. Another rich kid complaining about being famous.\n    You keep your face blank, but your eyes are cold.",
+            "goto": "minjae_choice_label"
+          }
+        ]
+      }
+    ]
+  },
+  "minjae_choice_label": {
+    "id": "minjae_choice_label",
+    "text": "You stand there with your feet planted and arms crossed, a defiant look in your eyes.\n    Sunbae almost seems impressed.\n\nYou stand there, one of your arms hugging the other as a form of comfort and protection, but you don't run.\n    You stay. Minjae almost looks like he regrets the harsh truths he just threw at you.\n    \"Why don't you, run I mean?\"",
+    "conditionals": [
+      {
+        "branches": []
+      },
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "per_gentle >= 55",
+            "type": "if",
+            "content": "",
+            "goto": null
+          },
+          {
+            "condition": "per_bold >= 55",
+            "type": "if",
+            "content": "",
+            "goto": null
+          }
+        ]
+      }
+    ],
+    "choices": [
+      {
+        "text": "\"Music is the only thing that makes me feel alive.\"",
+        "nextScene": "commute_scene",
+        "effects": [
+          "*set motivation \"Passion\"",
+          "*set rel_minjae %+10"
+        ],
+        "resultText": "\"Passion. That is the first thing they kill. But I suppose it is a good enough fuel for now.\""
+      },
+      {
+        "text": "\"I'm going to be the biggest star Korea has ever seen.\"",
+        "nextScene": "commute_scene",
+        "effects": [
+          "*set motivation \"Ambition\"",
+          "*set rel_minjae %+15"
+        ],
+        "resultText": "\"You're funny. Delusional, but entertaining. I'll give you that. Let's see if that ego survives the first month.\""
+      },
+      {
+        "text": "\"I just want to survive.\"",
+        "nextScene": "commute_scene",
+        "effects": [
+          "*set rel_minjae %+20",
+          "*set motivation \"Survival\"",
+          "*set self_belief %+10"
+        ],
+        "resultText": "\"Survival. At least you're honest about it. That is rare here. Most kids lie to themselves until they forget who they were.\""
+      }
+    ]
+  },
+  "commute_scene": {
+    "id": "commute_scene",
+    "text": "You leave the building and take the subway.\nYou look at the reflection in the window.\nYou just stepped out of Olympus back to Earth.",
+    "conditionals": [
+      {
+        "branches": []
+      },
+      {
+        "branches": []
+      },
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "origin = \"Mixed\"",
+            "type": "if",
+            "content": "",
+            "goto": "origin_mixed"
+          },
+          {
+            "condition": "origin = \"Global\"",
+            "type": "if",
+            "content": "",
+            "goto": "origin_global"
+          },
+          {
+            "condition": "origin = \"Local\"",
+            "type": "if",
+            "content": "",
+            "goto": "origin_local"
+          }
+        ]
+      }
+    ]
+  },
+  "origin_local": {
+    "id": "origin_local",
+    "text": "Grandma's House\nShe gives you an extra spoon of rice.\n\"Eat,\" she says. \"They won't feed you properly there.\"\nYou eat.\nIt tastes like warmth and nostalgia, you think to yourself that you should remember grandma's smile for some reason."
+  },
+  "origin_global": {
+    "id": "origin_global",
+    "text": "The Guesthouse\nYou check your phone. It's 3 AM back home. Everyone you love is asleep.\nYou are alone in a foreign country, chasing a dream."
+  },
+  "origin_mixed": {
+    "id": "origin_mixed",
+    "text": "The Family Home\nYour Grandfather yells at your father.\n\"A clown? You let the child become a clown?\"\nHe points at you.\n\"Korea will never accept you with that face.\""
+  },
+  "contract_scene": {
+    "id": "contract_scene",
+    "text": "",
+    "conditionals": [
+      {
+        "type": "conditional",
+        "branches": [
+          {
+            "condition": "origin = \"Global\"",
+            "type": "if",
+            "content": "",
+            "goto": "contract_alone"
+          },
+          {
+            "condition": null,
+            "type": "else",
+            "content": "",
+            "goto": "contract_family"
+          }
+        ]
+      }
+    ]
+  },
+  "contract_family": {
+    "id": "contract_family",
+    "text": "The contract is on the kitchen table.\nThe house is quiet, but the air is heavy with your parents' expectations.",
+    "choices": [
+      {
+        "text": "I sign with a shaking hand. I'm terrified.",
+        "nextScene": "end_chapter",
+        "effects": [
+          "*set self_belief %-5",
+          "*set rebellion -5",
+          "*set per_gentle +5",
+          "*set trauma_points + 1"
+        ],
+        "resultText": "Mom nods.\n        \"Make us proud.\""
+      },
+      {
+        "text": "I sign aggressively to prove Dad wrong.",
+        "nextScene": "end_chapter",
+        "effects": [
+          "*set rebellion +10",
+          "*set rel_father %-5"
+        ],
+        "selectable_if": "rel_father <= 40",
+        "resultText": "You press the pen down hard, the nib almost tearing the expensive paper.\n        Your father looks away, unable to meet your eyes."
+      },
+      {
+        "text": "I sign calmly.",
+        "nextScene": "end_chapter",
+        "effects": [
+          "*set the_mask %+10",
+          "*set rebellion -10"
+        ],
+        "resultText": "I am a professional.\n        The Trainee is born."
+      }
+    ]
+  },
+  "contract_alone": {
+    "id": "contract_alone",
+    "text": "The contract lies on the cheap linoleum floor of your guesthouse room.\nIt is just you.\nNo parents to read the fine print. No family to cheer for you or warn you.\nYou are thousands of miles from home, holding a pen that will decide your next seven years.",
+    "choices": [
+      {
+        "text": "I sign with a shaking hand. I wish I could call my mom.",
+        "nextScene": "end_chapter",
+        "effects": [
+          "*set self_belief %-5",
+          "*set rebellion -5",
+          "*set per_gentle +5",
+          "*set trauma_points + 1"
+        ],
+        "resultText": "The silence in the room is deafening, but you sign anyway.\n        You are on your own now."
+      },
+      {
+        "text": "I sign aggressively.",
+        "nextScene": "end_chapter",
+        "effects": [
+          "*set rebellion +10",
+          "*set per_bold +10"
+        ],
+        "resultText": "I crossed an ocean to get here.\n        I crossed an ocean for this. I won't turn back.\n        You didn't leave everything behind to be scared.\n        You sign your name in bold ink."
+      },
+      {
+        "text": "I sign calmly.",
+        "nextScene": "end_chapter",
+        "effects": [
+          "*set the_mask %+10",
+          "*set rebellion -10"
+        ],
+        "resultText": "I am my own guardian now.\n        You are an adult now.\n        You pack the contract away. The Trainee is born."
+      }
+    ]
+  },
+  "end_chapter": {
+    "id": "end_chapter",
+    "text": ""
+  }
+}
